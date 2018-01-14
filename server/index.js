@@ -15,12 +15,12 @@ let db = process.env.MONGODB_URI || 'mongodb://localhost/cryptofolio'
 
 mongoose.connect(db, { useMongoClient: true })
 
-app.use(express.static(path.resolve(__dirname, "../react-ui/build")))
+app.use(express.static(path.resolve(__dirname, "../client/build")))
 
 app.use("/api", api)
 
 app.get("*", (request, response) => {
-  response.sendFile(path.resolve(__dirname, "../react-ui/build", "index.html"))
+  response.sendFile(path.resolve(__dirname, "../client/build", "index.html"))
 })
 
 app.listen(PORT, () => {
