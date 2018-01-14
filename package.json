@@ -1,7 +1,7 @@
 {
-  "name": "reexpress-heroku",
+  "name": "portfolio-crypto",
   "version": "1.0.0",
-  "description": "create-react-app with a custom Node server on Heroku",
+  "description": "",
   "engines": {
     "node": "6.11.x"
   },
@@ -36,12 +36,8 @@
   "devDependencies": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dotBerry245/ReExpress-Heroku.git"
+    "url": "git+https://github.com/DiogenisPanagiotis/portfolio-crypto.git"
   },
-  "author": "dotBerry",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/dotBerry245/ReExpress-Heroku/issues"
-  },
-  "homepage": "https://github.com/dotBerry245/ReExpress-Heroku#readme"
+  "author": "",
+  "homepage": "https://github.com/DiogenisPanagiotis/portfolio-crypto"
 }
