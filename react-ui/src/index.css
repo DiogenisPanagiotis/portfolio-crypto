@@ -1,0 +1,157 @@
+body {
+	background-color: #FAFAFA;
+}
+
+.jumbotron {
+	background-color: #fff;
+	border: solid 1px #eee;
+	padding: 32px;
+	margin: 30px auto 0;
+}
+
+.jumbotron-login {
+	margin: 120px auto 0;
+}
+
+.card {
+	border: solid 1px #fff;
+}
+
+.form-control {
+	border: solid 1px #eee;
+}
+
+.btn:hover {
+	cursor: pointer;
+}
+
+#postFormMessage {
+	color: #dc3545 !important;
+	text-align: center;
+	margin-top: 24px;
+}
+
+.cryptofolio {
+	text-align: center;
+	font-family: 'Oleo Script', cursive;
+}
+
+.form-control {
+	background-color: #fafafa;
+	/*font-size: 14px;*/
+}
+
+.switchtosignup {
+	text-align: center;
+	color: #868E95;
+}
+
+.form-control:disabled {
+	background-color: #F8F9FA;
+}
+
+.or {
+	text-align: center;
+	vertical-align: center;
+	color: #868E95;
+	font-size: 11px;
+	padding: 9px 0px 0px 0px!important;
+}
+
+.jumbotron-switch {
+	padding: 10px 0px 10px 0px;
+}
+
+.alert-primary, .alert-success {
+	font-size: 12px;
+	padding: 8px 20px;
+	text-align: center;
+	margin-top: 15px;
+	margin-bottom: 0px;
+}
+
+.card-body-login {
+	padding-bottom: 0px;
+}
+
+.card-body {
+	padding: 20px 0px 0px 0px;
+}
+
+.card-body-switch {
+	padding-bottom: 20px;
+}
+
+.card-body-hide {
+	background-color: #FAFAFA;
+	border: none;
+}
+.card-hide {
+	border: none;
+}
+
+.card-subtitle {
+	text-align: center;
+	margin: 0px!important;
+	padding-top: 8px;
+}
+
+.card-subtitle-hide {
+}
+
+.jumbotron-hide {
+/*	background-color: #FAFAFA;
+	border: none;*/
+}
+
+@media (max-width: 575px) { 
+	.jumbotron {
+		background-color: #FAFAFA;
+		border: none;		
+	}
+	.card-subtitle {
+		background-color: #FAFAFA;
+	}
+	.card {
+		border: none;
+	}
+	.card-body {
+		background-color: #FAFAFA;
+		border: none;		
+	}
+	#currencyTable {
+		background-color: #fff;
+		border: solid 1px #eee;
+	}
+}
+
+#Cryptofolio {
+	font-family: 'Oleo Script', cursive;
+}
+
+.navbar {
+	background-color: #fff;
+	border: solid 1px #eee;
+}
+
+#currencyTable {
+	margin-top: 60px;
+}
+
+.container.container-dash {
+	margin: 0px!important;
+	padding-right: 0px;
+	padding-left: 0px;
+}
+
+.navbar-collapse.collapse.in {
+  display: block!important;
+}
+
+.navbar-toggler {
+	cursor: pointer;
+	outline: none !important;
+  box-shadow: none !important;   
+}
+
+
