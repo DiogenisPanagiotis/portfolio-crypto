@@ -14,8 +14,8 @@ render(
         <BrowserRouter>
         	<Switch>
 	            <Route exact path="/" component={App}/>
-	            <Route component={errorContainer} />
                 <Route exact path="/dashboard" component={dashboardContainer}/>
+	            <Route component={errorContainer} />
         	</Switch>
         </BrowserRouter>
     </Provider>,
