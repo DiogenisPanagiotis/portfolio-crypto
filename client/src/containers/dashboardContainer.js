@@ -17,7 +17,7 @@ class dashboardContainer extends Component {
                         <div className='col-xl-4'></div>
                         <div className='col-xl-4'>
                             <div id="currencyTable" className="jumbotron">
-                                <h5>Cryptocurrencies</h5>
+                                <h5 className='table-header'>Cryptocurrencies</h5>
                                 <TableContainer/>
                             </div>
                         </div>

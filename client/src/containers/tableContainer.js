@@ -24,10 +24,10 @@ class tableContainer extends Component {
                     <table className="table">
                         <thead>
                             <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Price</th>
-                                <th scope="col">Change</th>
+                                <th className='table-header-border' scope="col">#</th>
+                                <th className='table-header-border' scope="col">Name</th>
+                                <th className='table-header-border' scope="col">Price</th>
+                                <th className='table-header-border' scope="col">Change</th>
                             </tr>
                         </thead>
                         <tbody>

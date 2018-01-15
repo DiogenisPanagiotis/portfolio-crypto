@@ -12,6 +12,20 @@ class navContainer extends Component {
         this.props.history.push('/')
     }
 
+    renderUserLink() {
+        let { user } = window.localStorage
+        return (
+            <div className="dropdown">
+              <button className="btn no-glow dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {JSON.parse(user).username}
+              </button>
+              <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                { user ? <Link to='/' onClick={() => this.logout()}> <span className="nav-link">Logout</span></Link> : null}
+              </div>
+            </div>
+        )
+    }
+
     renderToggler() {
         return (
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
@@ -19,16 +33,22 @@ class navContainer extends Component {
             </button>
         )
     }
+
     render() {
         let { user } = window.localStorage
+        let issuesUrl = 'https://github.com/DiogenisPanagiotis/portfolio-crypto/issues'
         return (
-            <nav className="navbar navbar-expand-lg navbar-light">
-              <a id="Cryptofolio" className="navbar-brand mx-auto " href="/">Cryptofolio</a>
+            <nav className="navbar navbar-light">
+              <a id="Cryptofolio" className="navbar-brand mx-auto" href="/">Cryptofolio</a>
               {user ? this.renderToggler() : null}
               <div className="collapse navbar-collapse" id="navbarNav">
                 <ul className="navbar-nav ml-auto">
                   <li className="nav-item active">
-                  { user ? <Link to='/' onClick={() => this.logout()}> <span className="nav-link">Logout</span></Link> : null}
+                      <div className="j" aria-labelledby="dropdownMenuButton">
+                        <Link to='/'> <span className="nav-link">Home</span></Link>
+                        <a href={issuesUrl}><span className="nav-link">Issues</span></a>
+                        { user ? <Link to='/' onClick={() => this.logout()}> <span className="nav-link">Logout</span></Link> : null}
+                      </div>
                   </li>
                 </ul>
               </div>

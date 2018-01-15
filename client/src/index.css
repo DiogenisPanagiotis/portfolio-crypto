@@ -95,6 +95,10 @@ body {
 	padding-top: 8px;
 }
 
+.mx-auto {
+	margin: 0!important;
+}
+
 @media (max-width: 575px) { 
 	.jumbotron {
 		background-color: #FAFAFA;
@@ -152,5 +156,29 @@ body {
 .negative {
 	color: #DA3849;
 }
+
+.no-glow:focus {
+  border-color:#ccc;
+  outline: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.nav-link, .table-header {
+	text-align: center;
+}
+
+.issues-link {
+	color: rgba(0,0,0,.5);
+}
+
+.table-header {
+	margin-bottom: 20px;
+}
+
+.table-header-border {
+	border-bottom: 0px!important;
+}
+
 
 
