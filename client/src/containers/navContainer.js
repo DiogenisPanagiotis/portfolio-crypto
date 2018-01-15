@@ -11,7 +11,7 @@ class navContainer extends Component {
         let { localStorage } = window
         let { toggleSignupOrLogin } = this.props.actions
         if (!localStorage.user) {
-            toggleSignupOrLogin(false)
+            // toggleSignupOrLogin(false)
             this.props.history.push('/')
         }
     }
