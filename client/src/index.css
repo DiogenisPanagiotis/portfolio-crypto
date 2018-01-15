@@ -31,9 +31,13 @@ body {
 	margin-top: 24px;
 }
 
-.cryptofolio {
+.cryptofolio, .error404 {
 	text-align: center;
 	font-family: 'Oleo Script', cursive;
+}
+
+.error404 {
+	margin-bottom: 0px;
 }
 
 .form-control {
