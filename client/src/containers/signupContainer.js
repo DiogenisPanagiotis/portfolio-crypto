@@ -10,18 +10,20 @@ import '../index.css'
 class signupContainer extends Component {
 
     componentDidMount() {
-        const { handleChangeUsername, handleChangePassword, handleChangeEmail } = this.props.actions
-        const { getUsers, getCryptos } = this.props.actions
-        const { localStorage } = window
+        let { handleChangeUsername, handleChangePassword, handleChangeEmail } = this.props.actions
+        let { getUsers, getCryptos } = this.props.actions
+        let { localStorage } = window
         console.log(window.location)
         service.redirectToDashboard(localStorage, this.props)
         window.addEventListener('resize', this.resize)
         handleChangeEmail({ email: '' })
         handleChangeUsername({ username: '' })
         handleChangePassword({ password: '' })
-        getUsers().then(getCryptos())       
+        getUsers().then(() => {
+            getCryptos(0, 100)
+        })       
     }
-    
+
     resize = () => this.forceUpdate()
 
     componentWillUnmount() {

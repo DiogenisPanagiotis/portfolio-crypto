@@ -9,16 +9,14 @@ class tableContainer extends Component {
 
     componentDidMount() {
         let { getCryptos } = this.props.actions
-        getCryptos()
+
+        getCryptos(0, 100)
     }
 
-    renderPercentageClass(char) {
-        char !== '-' ? 'positive' : 'negative'
-    }
-
-    renderTables = () => {
+    renderTables() {
         let { cryptocurrencies } = this.props.cryptoReducer
-        if (cryptocurrencies) { 
+
+        if (cryptocurrencies) {       
             return (
                 <div className="table-responsive-sm">
                     <table className="table">
@@ -34,13 +32,15 @@ class tableContainer extends Component {
                         {
                             cryptocurrencies.map((cryptocurrency, i) => {
                                 let { symbol, price_usd, percent_change_24h } = cryptocurrency
+                                percent_change_24h = percent_change_24h === null ? '?' : percent_change_24h
+                                let percentString = percent_change_24h === '?' ? `${percent_change_24h}` : `${percent_change_24h}%`
                                 return (
                                     <tr key={i}>
                                         <th scope="row">{i + 1}</th>
                                         <td>{symbol}</td>
                                         <td>{`$${price_usd}`}</td>
                                         <td className={`${percent_change_24h[0] === '-' ? 'negative' : 'positive'}`}>
-                                            {`${cryptocurrency.percent_change_24h}%`}
+                                            { percentString }
                                         </td>
                                     </tr>
                                 )

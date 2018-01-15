@@ -47,9 +47,9 @@ const actions = {
     setInvalidSignup: () => ({
         type: SET_INVALID_SIGNUP
     }),
-    getCryptos: () => ({
+    getCryptos: (start, limit) => ({
         type: GET_CRYPTOS,
-        payload: service.getCryptos()
+        payload: service.getCryptos(start, limit)
     })         
 }
 

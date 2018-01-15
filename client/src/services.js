@@ -10,4 +10,4 @@ export const redirectToDashboard = (localStorage, props) => {
 	}
 }
 
-export const getCryptos = () => axios.get('https://api.coinmarketcap.com/v1/ticker/?limit=10')
+export const getCryptos = (start, limit) => axios.get(`https://api.coinmarketcap.com/v1/ticker/?start=${start}&limit=${limit}`)
