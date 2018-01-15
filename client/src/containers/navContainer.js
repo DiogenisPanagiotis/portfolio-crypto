@@ -8,12 +8,12 @@ import '../index.css'
 class navContainer extends Component {
 
     componentDidMount() {
-        let { localStorage } = window
-        let { toggleSignupOrLogin } = this.props.actions
-        if (!localStorage.user) {
+        // let { localStorage } = window
+        // let { toggleSignupOrLogin } = this.props.actions
+        // if (!localStorage.user) {
             // toggleSignupOrLogin(false)
-            this.props.history.push('/')
-        }
+            // this.props.history.push('/')
+        // }
     }
 
     logout() {
