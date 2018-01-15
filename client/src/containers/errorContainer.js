@@ -1,5 +1,6 @@
 import React from 'react'
 import NavContainer from './navContainer'
+import { Link } from 'react-router-dom'
 
 const errorContainer = () => {
 	return (
@@ -10,7 +11,10 @@ const errorContainer = () => {
 					<div className='col-lg-4'></div>
 						<div className='col-lg-4'>
 							<div className='jumbotron'>
-								<h2 className='error404'>Oops, 404!</h2>
+								<h1 className='error404'>Oops, 404!</h1>
+                                <h6 className='card-subtitle mb-2 text-muted'>
+                                    Are you lost? <Link to='/'>Follow me.</Link>
+                                </h6>
 							</div>
 						</div>
 					<div className='col-lg-4'></div>

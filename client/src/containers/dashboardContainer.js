@@ -14,14 +14,14 @@ class dashboardContainer extends Component {
                 <NavContainer/>
                 <div className='container'>
                     <div className='row'>
-                        <div className='col-lg-4'></div>
-                        <div className='col-lg-4'>
+                        <div className='col-xl-4'></div>
+                        <div className='col-xl-4'>
                             <div id="currencyTable" className="jumbotron">
-                                <h5>Currencies</h5>
+                                <h5>Cryptocurrencies</h5>
                                 <TableContainer/>
                             </div>
                         </div>
-                        <div className='col-lg-4'></div>
+                        <div className='col-xl-4'></div>
                     </div>
                 </div>
             </div>

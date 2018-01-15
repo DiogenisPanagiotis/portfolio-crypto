@@ -12,6 +12,10 @@ class tableContainer extends Component {
         getCryptos()
     }
 
+    renderPercentageClass(char) {
+        char !== '-' ? 'positive' : 'negative'
+    }
+
     renderTables = () => {
         let { cryptocurrencies } = this.props.cryptoReducer
         if (cryptocurrencies) { 
@@ -23,16 +27,21 @@ class tableContainer extends Component {
                                 <th scope="col">#</th>
                                 <th scope="col">Name</th>
                                 <th scope="col">Price</th>
+                                <th scope="col">Change</th>
                             </tr>
                         </thead>
                         <tbody>
                         {
                             cryptocurrencies.map((cryptocurrency, i) => {
+                                let { symbol, price_usd, percent_change_24h } = cryptocurrency
                                 return (
                                     <tr key={i}>
-                                      <th scope="row">{i + 1}</th>
-                                      <td>{cryptocurrency.symbol}</td>
-                                      <td>{cryptocurrency.price_usd}</td>
+                                        <th scope="row">{i + 1}</th>
+                                        <td>{symbol}</td>
+                                        <td>{`$${price_usd}`}</td>
+                                        <td className={`${percent_change_24h[0] === '-' ? 'negative' : 'positive'}`}>
+                                            {`${cryptocurrency.percent_change_24h}%`}
+                                        </td>
                                     </tr>
                                 )
                             })

@@ -36,13 +36,8 @@ body {
 	font-family: 'Oleo Script', cursive;
 }
 
-.error404 {
-	margin-bottom: 0px;
-}
-
 .form-control {
 	background-color: #fafafa;
-	/*font-size: 14px;*/
 }
 
 .switchtosignup {
@@ -100,14 +95,6 @@ body {
 	padding-top: 8px;
 }
 
-.card-subtitle-hide {
-}
-
-.jumbotron-hide {
-/*	background-color: #FAFAFA;
-	border: none;*/
-}
-
 @media (max-width: 575px) { 
 	.jumbotron {
 		background-color: #FAFAFA;
@@ -127,6 +114,10 @@ body {
 		background-color: #fff;
 		border: solid 1px #eee;
 	}
+	.mx-auto {
+        margin-left: 130px!important;
+        margin-right: 0px!important;
+    }
 }
 
 #Cryptofolio {
@@ -148,14 +139,18 @@ body {
 	padding-left: 0px;
 }
 
-.navbar-collapse.collapse.in {
-  display: block!important;
-}
-
 .navbar-toggler {
 	cursor: pointer;
 	outline: none !important;
-  box-shadow: none !important;   
+  	box-shadow: none !important;   
+}
+
+.positive {
+	color: #30A64A;
+}
+
+.negative {
+	color: #DA3849;
 }
 
 
