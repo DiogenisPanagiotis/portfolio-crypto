@@ -18,7 +18,7 @@ class tableContainer extends Component {
 
         if (cryptocurrencies) {       
             return (
-                <div className="table-responsive-sm">
+                <div className="table-responsive-xs">
                     <table className="table">
                         <thead>
                             <tr>

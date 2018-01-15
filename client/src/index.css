@@ -180,5 +180,9 @@ body {
 	border-bottom: 0px!important;
 }
 
+th, td {
+	font-size: 0.8rem;
+}
+
 
 
