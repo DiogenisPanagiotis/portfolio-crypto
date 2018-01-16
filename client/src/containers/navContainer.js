@@ -7,6 +7,9 @@ import { Link, withRouter } from 'react-router-dom'
 class navContainer extends Component {
 
     logout() {
+        let { appReducer } = this.props
+        let { toggleSignedup } = this.props.actions
+        toggleSignedup(true)
         localStorage.removeItem('user')
         localStorage.removeItem('rowClicked')
         this.props.history.push('/')
@@ -50,7 +53,7 @@ class navContainer extends Component {
                     <ul className="navbar-nav ml-auto">
                         <li className="nav-item active">
                             <div className="j" aria-labelledby="dropdownMenuButton">
-                                <div className="dropdown-header">{`@${JSON.parse(user).username}`}</div>
+                                <div className="dropdown-header">{user ? `@${JSON.parse(user).username}` : ''}</div>
                                 <Link to='/'> <span className="nav-link">Home</span></Link>
                                 <a href={issuesUrl}><span className="nav-link">Issues</span></a>
                                 { user ? <Link to='/' onClick={() => this.logout()}> <span className="nav-link">Logout</span></Link> : null}

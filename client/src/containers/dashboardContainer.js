@@ -7,11 +7,11 @@ import NavContainer from './navContainer'
 import TableContainer from './tableContainer'
 
 class dashboardContainer extends Component {
-    // componentDidMount() {
-    //     if (!window.localStorage.user) {
-    //         this.props.history.push('/')
-    //     }
-    // }
+    componentDidMount() {
+        if (!window.localStorage.user) {
+            this.props.history.push('/')
+        }
+    }
     render() {
         return (
             <div className='container-dash'>

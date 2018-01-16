@@ -10,6 +10,9 @@ class loginContainer extends Component {
     componentDidMount() {
         let { handleChangeUsername, handleChangePassword } = this.props.actions
         let { getUsers } = this.props.actions
+        if (window.localStorage.user) {
+            this.props.history.push('/dashboard')
+        }
         window.addEventListener('resize', this.resize)
         handleChangeUsername({ username: '' })
         handleChangePassword({ password: '' })
