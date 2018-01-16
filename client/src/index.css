@@ -114,6 +114,13 @@ body {
 		background-color: #FAFAFA;
 		border: none;		
 	}
+	.card-body-form {
+		background-color: #fff;
+	}
+
+	.card-form {
+		/*border: none!important;*/
+	}
 	#currencyTable {
 		background-color: #fff;
 		border: solid 1px #eee;
@@ -124,8 +131,14 @@ body {
     }
 }
 
-#Cryptofolio {
+#Cryptofolio, .card-form-crypto-name {
 	font-family: 'Oleo Script', cursive;
+}
+
+.card-form-crypto-name {
+	background-color: #fff;
+	border-bottom: none;
+	text-align: center;
 }
 
 .navbar {
@@ -134,7 +147,8 @@ body {
 }
 
 #currencyTable {
-	margin-top: 60px;
+	margin-top: 50px;
+	margin-bottom: 12px;
 }
 
 .container.container-dash {
@@ -164,7 +178,7 @@ body {
   box-shadow: none;
 }
 
-.nav-link, .table-header {
+.nav-link, .table-header, .dropdown-header{
 	text-align: center;
 }
 
@@ -173,6 +187,7 @@ body {
 }
 
 .table-header {
+	/*font-size: 1.5rem;*/
 	margin-bottom: 20px;
 }
 
@@ -182,6 +197,45 @@ body {
 
 th, td {
 	font-size: 0.8rem;
+}
+
+.dropdown-header {
+	font-weight: 600;
+	color: #212529;
+	font-size: 1rem;
+}
+
+tr:hover {
+	cursor: pointer;
+	background-color: #FAFAFA;
+}
+.price-usd {
+	color: #04A9F4;
+	/*color: #33B4F6;*/
+}
+
+.percent {
+	text-align: right;
+}
+
+.card-form {
+	border: solid 1px #eee;
+}
+
+.card-body-form {
+	padding: 20px;
+}
+
+.table-top-border {
+	border-top: none!important;
+}
+
+.table {
+	margin-bottom: 0px;
+}
+
+#crypto-input {
+	margin-top: 12px;
 }
 
 

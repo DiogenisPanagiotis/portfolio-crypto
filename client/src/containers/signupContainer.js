@@ -5,7 +5,6 @@ import actions from '../actions/actions'
 import { Link, withRouter } from 'react-router-dom'
 import passwordHash from 'password-hash'
 import * as service from '../services'
-import '../index.css'
 
 class signupContainer extends Component {
 

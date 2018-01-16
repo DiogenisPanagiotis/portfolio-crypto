@@ -3,16 +3,23 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import actions from '../actions/actions'
 import { withRouter } from 'react-router-dom'
-import '../index.css'
 
 class tableContainer extends Component {
 
     componentDidMount() {
         let { getCryptos } = this.props.actions
-
         getCryptos(0, 100)
     }
 
+    rowClicked(cryptocurrency) {
+        let { handleRowClick } = this.props.actions
+        let { localStorage } = window
+        let userCookie = JSON.stringify(cryptocurrency)
+        localStorage.setItem('rowClicked', userCookie)
+        handleRowClick(cryptocurrency)
+        this.props.history.push('/form')
+    }
+    
     renderTables() {
         let { cryptocurrencies } = this.props.cryptoReducer
 
@@ -25,7 +32,7 @@ class tableContainer extends Component {
                                 <th className='table-header-border' scope="col">#</th>
                                 <th className='table-header-border' scope="col">Name</th>
                                 <th className='table-header-border' scope="col">Price</th>
-                                <th className='table-header-border' scope="col">Change</th>
+                                <th className='table-header-border percent' scope="col">Change</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -35,11 +42,11 @@ class tableContainer extends Component {
                                 percent_change_24h = percent_change_24h === null ? '?' : percent_change_24h
                                 let percentString = percent_change_24h === '?' ? `${percent_change_24h}` : `${percent_change_24h}%`
                                 return (
-                                    <tr key={i}>
+                                    <tr onClick={() => this.rowClicked(cryptocurrency)} key={i}>
                                         <th scope="row">{i + 1}</th>
                                         <td>{symbol}</td>
-                                        <td>{`$${price_usd}`}</td>
-                                        <td className={`${percent_change_24h[0] === '-' ? 'negative' : 'positive'}`}>
+                                        <td className='price-usd'>{`$${price_usd}`}</td>
+                                        <td className={`percent ${percent_change_24h[0] === '-' ? 'negative' : 'positive'}`}>
                                             { percentString }
                                         </td>
                                     </tr>
@@ -74,8 +81,8 @@ class tableContainer extends Component {
 }
 
 function mapStateToProps(state) {
-    const { userReducer, cryptoReducer } = state
-    return { userReducer, cryptoReducer }
+    const { userReducer, cryptoReducer, tableReducer } = state
+    return { userReducer, cryptoReducer, tableReducer }
 }
 
 function mapDispatchToProps(dispatch) {

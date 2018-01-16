@@ -5,16 +5,13 @@ import actions from '../actions/actions'
 import { withRouter } from 'react-router-dom'
 import NavContainer from './navContainer'
 import TableContainer from './tableContainer'
-import ErrorContainer from './errorContainer'
-import '../index.css'
 
 class dashboardContainer extends Component {
-    componentDidMount() {
-        if (!window.localStorage.user) {
-            this.props.history.push('/')
-        }
-    }
-
+    // componentDidMount() {
+    //     if (!window.localStorage.user) {
+    //         this.props.history.push('/')
+    //     }
+    // }
     render() {
         return (
             <div className='container-dash'>

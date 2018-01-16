@@ -4,13 +4,15 @@ import appReducer from './appReducer'
 import signupReducer from './signupReducer'
 import loginReducer from './loginReducer'
 import cryptoReducer from './cryptoReducer'
+import tableReducer from './tableReducer'
 
 const rootReducer = combineReducers({
 	appReducer,
 	userReducer,
 	signupReducer,
 	loginReducer,
-	cryptoReducer
+	cryptoReducer,
+	tableReducer
 })
 
 export default rootReducer

@@ -1,7 +1,7 @@
 import { GET_USERS, ADD_USER, HANDLE_CHANGE_EMAIL, HANDLE_CHANGE_USERNAME, HANDLE_CHANGE_PASSWORD, 
          TOGGLE_SIGNEDUP, SET_USERNAMETAKEN_TRUE, SET_USERNAMETAKEN_FALSE,
          SET_INVALID, SET_INVALID_SIGNUP, TOGGLE_SIGNUP_OR_LOGIN,
-         GET_CRYPTOS } from '../constants'
+         GET_CRYPTOS, ROW_CLICKED } from '../constants'
 
 import * as service from '../services'
 
@@ -50,6 +50,10 @@ const actions = {
     getCryptos: (start, limit) => ({
         type: GET_CRYPTOS,
         payload: service.getCryptos(start, limit)
+    }),
+    handleRowClick: (cryptocurrency) => ({
+        type: ROW_CLICKED,
+        payload: cryptocurrency
     })         
 }
 

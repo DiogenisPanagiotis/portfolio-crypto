@@ -5,8 +5,9 @@ import { Provider } from 'react-redux'
 import store from './store'
 import registerServiceWorker from './registerServiceWorker'
 import App from './containers/App'
-import dashboardContainer from './containers/dashboardContainer'
-import errorContainer from './containers/errorContainer'
+import DashboardContainer from './containers/dashboardContainer'
+import ErrorContainer from './containers/errorContainer'
+import PortfolioFormContainer from './containers/portfolioFormContainer'
 import './index.css'
 
 render(
@@ -14,8 +15,13 @@ render(
         <BrowserRouter>
         	<Switch>
 	            <Route exact path="/" component={App}/>
-                <Route exact path="/dashboard" component={dashboardContainer}/>
-	            <Route component={errorContainer} />
+                <Route exact path="/dashboard" render={props => (
+                    window.localStorage.user ? <DashboardContainer {...props} /> : <App/>
+                )}/>
+                <Route exact path="/form" render={props => (
+                    window.localStorage.user ? <PortfolioFormContainer {...props}/> : <App/>
+                )}/>
+	            <Route component={ErrorContainer} />
         	</Switch>
         </BrowserRouter>
     </Provider>,
@@ -23,3 +29,6 @@ render(
 )
 
 registerServiceWorker()
+
+                // <Route exact path="/dashboard" component={dashboardContainer}/>
+                // <Route exact path="/form" component={portfolioFormContainer}/>

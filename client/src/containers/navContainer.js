@@ -3,12 +3,12 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import actions from '../actions/actions'
 import { Link, withRouter } from 'react-router-dom'
-import '../index.css'
 
 class navContainer extends Component {
 
     logout() {
         localStorage.removeItem('user')
+        localStorage.removeItem('rowClicked')
         this.props.history.push('/')
     }
 
@@ -39,19 +39,25 @@ class navContainer extends Component {
         let issuesUrl = 'https://github.com/DiogenisPanagiotis/portfolio-crypto/issues'
         return (
             <nav className="navbar navbar-light">
-              <a id="Cryptofolio" className="navbar-brand mx-auto" href="/">Cryptofolio</a>
-              {user ? this.renderToggler() : null}
-              <div className="collapse navbar-collapse" id="navbarNav">
+                <a id="Cryptofolio" className="navbar-brand mx-auto" href="/">Cryptofolio</a>
                 <ul className="navbar-nav ml-auto">
-                  <li className="nav-item active">
-                      <div className="j" aria-labelledby="dropdownMenuButton">
-                        <Link to='/'> <span className="nav-link">Home</span></Link>
-                        <a href={issuesUrl}><span className="nav-link">Issues</span></a>
-                        { user ? <Link to='/' onClick={() => this.logout()}> <span className="nav-link">Logout</span></Link> : null}
-                      </div>
-                  </li>
+                    <li className="nav-item active">
+                        <a className="nav-link" href="#"><span className="sr-only">(current)</span></a>
+                    </li>
                 </ul>
-              </div>
+                {user ? this.renderToggler() : null}
+                <div className="collapse navbar-collapse" id="navbarNav">
+                    <ul className="navbar-nav ml-auto">
+                        <li className="nav-item active">
+                            <div className="j" aria-labelledby="dropdownMenuButton">
+                                <div className="dropdown-header">{`@${JSON.parse(user).username}`}</div>
+                                <Link to='/'> <span className="nav-link">Home</span></Link>
+                                <a href={issuesUrl}><span className="nav-link">Issues</span></a>
+                                { user ? <Link to='/' onClick={() => this.logout()}> <span className="nav-link">Logout</span></Link> : null}
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             </nav>
     	)
   	}

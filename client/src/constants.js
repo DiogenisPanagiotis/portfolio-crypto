@@ -18,3 +18,5 @@ export const SET_INVALID = 'SET_INVALID'
 export const SET_INVALID_SIGNUP = 'SET_INVALID_SIGNUP'
 
 export const GET_CRYPTOS = 'GET_CRYPTOS'
+
+export const ROW_CLICKED = 'ROW_CLICKED'
