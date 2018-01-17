@@ -175,11 +175,11 @@ body {
 }
 
 .positive {
-	color: #30A64A;
+	color: #3cd483;
 }
 
 .negative {
-	color: #DA3849;
+	color: #ff6060;
 }
 
 .no-glow:focus {
