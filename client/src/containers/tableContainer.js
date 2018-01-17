@@ -7,8 +7,36 @@ import { withRouter } from 'react-router-dom'
 class tableContainer extends Component {
 
     componentDidMount() {
+        let { getUsers } = this.props.actions
         let { getCryptos } = this.props.actions
-        getCryptos(0, 100)
+        getCryptos(0, 100).then(() => {
+            getUsers()
+        })
+    }
+
+    getHoldings() {
+        let { getUsers } = this.props.actions
+        let { users } = this.props.userReducer
+        let { cryptocurrencies } = this.props.cryptoReducer
+        let { localStorage } = window
+        let currentUser = JSON.parse(localStorage.user).username
+        let cryptoRow = ''
+        let holdings = '0'
+        if (users) {
+            users.forEach(user => {
+                if (user.username === currentUser) {
+                    if (user.cryptocurrencies.length > 0) {
+                        user.cryptocurrencies.forEach((crypto, i) => {
+                            // if (crypto.symbol === cryptoClicked) {
+                                cryptoRow = cryptocurrencies[i].symbol
+                                holdings = crypto.holdings
+                            // }
+                        })
+                    }
+                }
+            })
+        }
+        return `${holdings} ${cryptoRow}`
     }
 
     rowClicked(cryptocurrency) {
@@ -19,7 +47,7 @@ class tableContainer extends Component {
         handleRowClick(cryptocurrency)
         this.props.history.push('/form')
     }
-    
+
     renderTables() {
         let { cryptocurrencies } = this.props.cryptoReducer
 

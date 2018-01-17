@@ -147,7 +147,7 @@ body {
 }
 
 #currencyTable {
-	margin-top: 50px;
+	margin-top: 13px;
 	margin-bottom: 12px;
 }
 
@@ -236,6 +236,12 @@ tr:hover {
 
 #crypto-input {
 	margin-top: 12px;
+}
+
+#invalid-crypto-value {
+	text-align: center;
+	margin-top: 10px;
+	color: #dc3545 !important;
 }
 
 

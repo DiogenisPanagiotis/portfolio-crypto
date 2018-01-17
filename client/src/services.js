@@ -11,3 +11,5 @@ export const redirectToDashboard = (localStorage, props) => {
 }
 
 export const getCryptos = (start, limit) => axios.get(`https://api.coinmarketcap.com/v1/ticker/?start=${start}&limit=${limit}`)
+
+export const updateUser = userModel => axios.put(`/api/users/${userModel._id}`, userModel)

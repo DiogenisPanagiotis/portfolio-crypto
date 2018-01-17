@@ -35,7 +35,7 @@ class loginContainer extends Component {
             for (let userModel of users) {
                 let verifyPassword = passwordHash.verify(password, userModel.password)
                 if (userModel.username === username && verifyPassword) {
-                    let userCookie = JSON.stringify({ username: userModel.username })
+                    let userCookie = JSON.stringify({ username: userModel.username, _id: userModel._id })
                     localStorage.setItem('user', userCookie)
                     if (invalid === true) {
                         setInvalid()
@@ -75,7 +75,6 @@ class loginContainer extends Component {
                                         <input 
                                             autoFocus
                                             maxLength={40}
-                                            disabled={localStorage.user ? true : false}
                                             value={username} 
                                             type="email" 
                                             className={`form-control ${invalid ? 'is-invalid' : null}`} 
@@ -87,7 +86,6 @@ class loginContainer extends Component {
                                     </div>
                                     <div className="form-group form-group-password">
                                         <input 
-                                            disabled={localStorage.user ? true : false}
                                             maxLength={40}
                                             value={password} 
                                             type="password" 

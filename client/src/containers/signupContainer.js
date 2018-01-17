@@ -54,7 +54,7 @@ class signupContainer extends Component {
 
         if (email.length > 0 && username.length > 0 && password.length > 0) {
             let hashedPassword = passwordHash.generate(password)
-            addUser({ email: email, username: username, password: hashedPassword }).then(() => {
+            addUser({ email: email, username: username, password: hashedPassword, cryptocurrencies: [] }).then(() => {
                 handleChangeEmail({ email: '' })
                 handleChangeUsername({ username: '' })
                 handleChangePassword({ password: '' })

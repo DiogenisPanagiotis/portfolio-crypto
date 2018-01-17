@@ -8,10 +8,35 @@ import NavContainer from './navContainer'
 class portfolioFormContainer extends Component {
     componentDidMount() {
         let { tableReducer } = this.props
+        let { getUsers } = this.props.actions
         let { localStorage } = window
         if (!localStorage.user) {
             this.props.history.push('/')
         }
+        getUsers()
+    }
+
+    getHoldings() {
+        let { getUsers } = this.props.actions
+        let { users } = this.props.userReducer
+        let { localStorage } = window
+        let currentUser = JSON.parse(localStorage.user).username
+        let cryptoClicked = JSON.parse(localStorage.rowClicked).symbol
+        let holdings = '0'
+        if (users) {
+            users.forEach(user => {
+                if (user.username === currentUser) {
+                    if (user.cryptocurrencies.length > 0) {
+                        user.cryptocurrencies.forEach(crypto => {
+                            if (crypto.symbol === cryptoClicked) {
+                                holdings = crypto.holdings
+                            }
+                        })
+                    }
+                }
+            })
+        }
+        return `${holdings} ${cryptoClicked}`
     }
 
     renderCardBody() {
@@ -22,6 +47,10 @@ class portfolioFormContainer extends Component {
             <div className="table-responsive-xs">
                 <table className="table">
                   <tbody>
+                    <tr>
+                      <th className='table-top-border' scope="row">Holdings</th>
+                      <td className='table-top-border'>{this.getHoldings()}</td>
+                    </tr>
                     <tr>
                       <th className='table-top-border' scope="row">Price</th>
                       <td className='table-top-border'>{`$${JSON.parse(localStorage.rowClicked).price_usd}`}</td>
@@ -44,40 +73,62 @@ class portfolioFormContainer extends Component {
         )
     }
 
+    updateUser() {
+        let { localStorage } = window
+        let id = JSON.parse(localStorage.user)._id
+        let rowClicked = JSON.parse(localStorage.rowClicked)
+        let { tableReducer } = this.props
+        let { updateUser, getUsers, toggleInvalidValue, handleCryptocurrencyValue } = this.props.actions
+        if (tableReducer.cryptocurrencyValue.length === 0 || isNaN(Number(tableReducer.cryptocurrencyValue))) {
+            toggleInvalidValue(true)
+            return
+        } else {
+            console.log('dkfjsdk')
+            updateUser({
+                _id: id,
+                name: rowClicked.name || tableReducer.cryptocurrency.name, 
+                symbol: rowClicked.symbol || tableReducer.cryptocurrency.symbol,
+                holdings: tableReducer.cryptocurrencyValue
+            }).then(() => {
+                getUsers().then(() => {
+                    handleCryptocurrencyValue('')
+                })
+            })
+        }
+        toggleInvalidValue(false)
+    }
+
     renderInput() {
         let { localStorage } = window
+        let { handleCryptocurrencyValue } = this.props.actions
         let cryptocurrency = JSON.parse(localStorage.rowClicked)
+        let { invalid, cryptocurrencyValue } = this.props.tableReducer
         return (
             <div id='crypto-input' className='container'>
                 <div className='row'>
-                    <div className='col-xl-4'></div>
-                    <div className='col-xl-4'>
+                    <div className='col-xl-3'></div>
+                    <div className='col-xl-6'>
                     <div className="card card-form">
                         <div className="card-body card-body-form">
                             <div className='col-xs'>
                                 <div className="input-group mb-3">
                                     <input 
+                                        autoFocus
                                         type="text" 
                                         className="form-control" 
-                                        placeholder={cryptocurrency.symbol}
+                                        placeholder={this.getHoldings()}
+                                        onChange = {({target}) => handleCryptocurrencyValue(target.value)}
+                                        value={cryptocurrencyValue}
                                         />
                                 </div>
                             </div>
-                            <div className='col-xs'>
-                                <div className="input-group mb-3">
-                                    <input 
-                                        type="text" 
-                                        className="form-control" 
-                                        placeholder='USD'
-                                        />
-                                </div>
-                            </div>
-                            <button type="button" className="btn btn-primary btn-sm btn-block">Submit</button>
+                            <button onClick={() => this.updateUser()} type="button" className="btn btn-primary btn-sm btn-block">Submit</button>
+                            { invalid ? <small id='invalid-crypto-value' className="form-text text-muted">Invalid value.</small> : ''}
                         </div>
 
                     </div>
                     </div>
-                    <div className='col-xl-4'></div>
+                    <div className='col-xl-3'></div>
                 </div>
             </div>     
         )
@@ -92,28 +143,28 @@ class portfolioFormContainer extends Component {
                 <NavContainer/>
                 <div className='container'>
                 <div className='row'>
-                    <div className='col-xl-4'></div>
-                    <div className='col-xl-4'>
+                    <div className='col-xl-3'></div>
+                    <div className='col-xl-6'>
                     <div id="currencyTable" className='card card-form'>
                         <div className='card-body card-body-form card-form-crypto-name'>
                         { `${cryptocurrency.name} (${cryptocurrency.symbol})`}
                         </div>
                     </div>
                     </div>
-                    <div className='col-xl-4'></div>
+                    <div className='col-xl-3'></div>
                 </div>
                 </div>
                 <div className='container'>
                     <div className='row'>
-                        <div className='col-xl-4'></div>
-                        <div className='col-xl-4'>
+                        <div className='col-xl-3'></div>
+                        <div className='col-xl-6'>
                         <div className="card card-form">
                             <div className="card-body card-body-form">
                                 {this.renderCardBody()}
                             </div>
                         </div>
                         </div>
-                        <div className='col-xl-4'></div>
+                        <div className='col-xl-3'></div>
                     </div>
                 </div>
                 {this.renderInput()}
