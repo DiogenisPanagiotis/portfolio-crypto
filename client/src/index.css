@@ -124,6 +124,7 @@ body {
 	#currencyTable {
 		background-color: #fff;
 		border: solid 1px #eee;
+		padding: 20px;
 	}
 	.mx-auto {
         margin-left: 130px!important;
