@@ -154,8 +154,12 @@ body {
 }
 
 #currencyTable {
-	margin-top: 13px;
+	margin-top: 70px;
 	margin-bottom: 12px;
+}
+
+.fixed-top {
+	border-top: none;
 }
 
 .container.container-dash {
@@ -204,6 +208,7 @@ body {
 
 th, td {
 	font-size: 0.8rem;
+	/*border-color: #FAFAFA!important;*/
 }
 
 .dropdown-header {

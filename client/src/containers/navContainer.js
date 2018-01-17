@@ -41,7 +41,7 @@ class navContainer extends Component {
         let { user } = window.localStorage
         let issuesUrl = 'https://github.com/DiogenisPanagiotis/portfolio-crypto/issues'
         return (
-            <nav className="navbar navbar-light">
+            <nav className="navbar fixed-top navbar-light">
                 <a id="Cryptofolio" className="navbar-brand mx-auto" href="/">Cryptofolio</a>
                 <ul className="navbar-nav ml-auto">
                     <li className="nav-item active">
