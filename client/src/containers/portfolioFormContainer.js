@@ -52,8 +52,8 @@ class portfolioFormContainer extends Component {
                       <td className='table-top-border'>{this.getHoldings()}</td>
                     </tr>
                     <tr>
-                      <th className='table-top-border' scope="row">Price</th>
-                      <td className='table-top-border'>{`$${JSON.parse(localStorage.rowClicked).price_usd}`}</td>
+                      <th scope="row">Price</th>
+                      <td>{`$${JSON.parse(localStorage.rowClicked).price_usd}`}</td>
                     </tr>
                     <tr>
                       <th scope="row">Change (1h)</th>
@@ -110,6 +110,7 @@ class portfolioFormContainer extends Component {
                     <div className='col-xl-6'>
                     <div className="card card-form">
                         <div className="card-body card-body-form">
+                        <h6 className="form-subtitle mb-3 text-muted">Current {`${cryptocurrency.name} (${cryptocurrency.symbol})`} holdings.</h6>
                             <div className='col-xs'>
                                 <div className="input-group mb-3">
                                     <input 
@@ -122,7 +123,7 @@ class portfolioFormContainer extends Component {
                                         />
                                 </div>
                             </div>
-                            <button onClick={() => this.updateUser()} type="button" className="btn btn-primary btn-sm btn-block">Submit</button>
+                            <button id='submit-crypto' onClick={() => this.updateUser()} type="button" className="btn btn-primary btn-sm btn-block">Submit</button>
                             { invalid ? <small id='invalid-crypto-value' className="form-text text-muted">Invalid value.</small> : ''}
                         </div>
 

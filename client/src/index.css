@@ -135,6 +135,12 @@ body {
 	font-family: 'Oleo Script', cursive;
 }
 
+.form-subtitle {
+	text-align: left;
+	/*margin: 0px!important;*/
+	/*padding-top: 8px;*/
+}
+
 .card-form-crypto-name {
 	background-color: #fff;
 	border-bottom: none;
@@ -242,6 +248,10 @@ tr:hover {
 	text-align: center;
 	margin-top: 10px;
 	color: #dc3545 !important;
+}
+
+#submit-crypto {
+	height: 38px;
 }
 
 
