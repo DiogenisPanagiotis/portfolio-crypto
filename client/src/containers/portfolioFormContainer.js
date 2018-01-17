@@ -114,7 +114,6 @@ class portfolioFormContainer extends Component {
                             <div className='col-xs'>
                                 <div className="input-group mb-3">
                                     <input 
-                                        autoFocus
                                         type="text" 
                                         className="form-control" 
                                         placeholder={this.getHoldings()}
