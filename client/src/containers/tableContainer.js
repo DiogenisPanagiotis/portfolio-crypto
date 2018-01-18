@@ -14,29 +14,27 @@ class tableContainer extends Component {
         })
     }
 
-    getHoldings() {
+    getHoldings(cryptocurrency) {
         let { getUsers } = this.props.actions
         let { users } = this.props.userReducer
         let { cryptocurrencies } = this.props.cryptoReducer
         let { localStorage } = window
         let currentUser = JSON.parse(localStorage.user).username
-        let cryptoRow = ''
         let holdings = '0'
         if (users) {
             users.forEach(user => {
                 if (user.username === currentUser) {
                     if (user.cryptocurrencies.length > 0) {
                         user.cryptocurrencies.forEach((crypto, i) => {
-                            // if (crypto.symbol === cryptoClicked) {
-                                cryptoRow = cryptocurrencies[i].symbol
+                            if (crypto.symbol === cryptocurrency.symbol) {
                                 holdings = crypto.holdings
-                            // }
+                            }
                         })
                     }
                 }
             })
         }
-        return `${holdings} ${cryptoRow}`
+        return `${holdings} ${cryptocurrency.symbol}`
     }
 
     rowClicked(cryptocurrency) {
@@ -60,6 +58,7 @@ class tableContainer extends Component {
                                 <th className='table-header-border' scope="col">#</th>
                                 <th className='table-header-border' scope="col">Name</th>
                                 <th className='table-header-border' scope="col">Price</th>
+                                <th className='table-header-border hide-holdings' scope="col">Holdings</th>
                                 <th className='table-header-border percent' scope="col">Change</th>
                             </tr>
                         </thead>
@@ -74,6 +73,7 @@ class tableContainer extends Component {
                                         <th scope="row">{i + 1}</th>
                                         <td>{symbol}</td>
                                         <td className='price-usd'>{`$${price_usd}`}</td>
+                                        <td className='hide-holdings'>{this.getHoldings(cryptocurrency)}</td>
                                         <td className={`percent ${percent_change_24h[0] === '-' ? 'negative' : 'positive'}`}>
                                             { percentString }
                                         </td>

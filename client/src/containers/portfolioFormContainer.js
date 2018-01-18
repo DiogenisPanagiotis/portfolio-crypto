@@ -22,7 +22,7 @@ class portfolioFormContainer extends Component {
         let { localStorage } = window
         let currentUser = JSON.parse(localStorage.user).username
         let cryptoClicked = JSON.parse(localStorage.rowClicked).symbol
-        let holdings = '0'
+        let holdings = '0.0000'
         if (users) {
             users.forEach(user => {
                 if (user.username === currentUser) {
@@ -47,25 +47,25 @@ class portfolioFormContainer extends Component {
             <div className="table-responsive-xs">
                 <table className="table">
                   <tbody>
-                    <tr>
+                    <tr className='hide-hover'>
                       <th className='table-top-border' scope="row">Holdings</th>
-                      <td className='table-top-border'>{this.getHoldings()}</td>
+                      <td className='table-top-border text-align-right'>{this.getHoldings()}</td>
                     </tr>
-                    <tr>
-                      <th scope="row">Price</th>
-                      <td>{`$${JSON.parse(localStorage.rowClicked).price_usd}`}</td>
+                    <tr className='hide-hover'>
+                      <th className='hide-top-border' scope="row">Price</th>
+                      <td className='text-align-right hide-top-border'>{`$${JSON.parse(localStorage.rowClicked).price_usd}`}</td>
                     </tr>
-                    <tr>
-                      <th scope="row">Change (1h)</th>
-                      <td>{`${cryptocurrency.percent_change_1h}%`}</td>
+                    <tr className='hide-hover'>
+                      <th className='hide-top-border' scope="row">Change (1h)</th>
+                      <td className='text-align-right hide-top-border'>{`${cryptocurrency.percent_change_1h}%`}</td>
                     </tr>
-                    <tr>
-                      <th scope="row">Market Cap</th>
-                      <td>{`$${ JSON.parse((cryptocurrency.market_cap_usd)).toLocaleString() }`}</td>
+                    <tr className='hide-hover'>
+                      <th className='hide-top-border' scope="row">Market Cap</th>
+                      <td className='text-align-right hide-top-border'>{`$${ JSON.parse((cryptocurrency.market_cap_usd)).toLocaleString() }`}</td>
                     </tr>
-                    <tr>
-                      <th scope="row">Supply</th>
-                      <td>{`${JSON.parse((cryptocurrency.available_supply)).toLocaleString()} ${cryptocurrency.symbol}`}</td>
+                    <tr className='hide-hover'>
+                      <th className='hide-top-border' scope="row">Supply</th>
+                      <td className='text-align-right hide-top-border'>{`${JSON.parse((cryptocurrency.available_supply)).toLocaleString()} ${cryptocurrency.symbol}`}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -104,32 +104,18 @@ class portfolioFormContainer extends Component {
         let cryptocurrency = JSON.parse(localStorage.rowClicked)
         let { invalid, cryptocurrencyValue } = this.props.tableReducer
         return (
-            <div id='crypto-input' className='container'>
-                <div className='row'>
-                    <div className='col-xl-3'></div>
-                    <div className='col-xl-6'>
-                    <div className="card card-form">
-                        <div className="card-body card-body-form">
-                        <h6 className="form-subtitle mb-3 text-muted">Current {`${cryptocurrency.name} (${cryptocurrency.symbol})`} holdings.</h6>
-                            <div className='col-xs'>
-                                <div className="input-group mb-3">
-                                    <input 
-                                        type="text" 
-                                        className="form-control" 
-                                        placeholder={this.getHoldings()}
-                                        onChange = {({target}) => handleCryptocurrencyValue(target.value)}
-                                        value={cryptocurrencyValue}
-                                        />
-                                </div>
-                            </div>
-                            <button id='submit-crypto' onClick={() => this.updateUser()} type="button" className="btn btn-primary btn-sm btn-block">Submit</button>
-                            { invalid ? <small id='invalid-crypto-value' className="form-text text-muted">Invalid value.</small> : ''}
-                        </div>
-
-                    </div>
-                    </div>
-                    <div className='col-xl-3'></div>
+            <div id='crypto-input'>
+                <div className="input-group mb-3">
+                    <input 
+                        type="text" 
+                        className="form-control" 
+                        placeholder={this.getHoldings()}
+                        onChange = {({target}) => handleCryptocurrencyValue(target.value)}
+                        value={cryptocurrencyValue}
+                        />
                 </div>
+                <button id='submit-crypto' onClick={() => this.updateUser()} type="button" className="btn btn-primary btn-sm btn-block">Submit</button>
+                { invalid ? <small id='invalid-crypto-value' className="form-text text-muted">Invalid value.</small> : ''}
             </div>     
         )
     }
@@ -142,32 +128,24 @@ class portfolioFormContainer extends Component {
             <div className='container-dash'>
                 <NavContainer/>
                 <div className='container'>
-                <div className='row'>
-                    <div className='col-xl-3'></div>
-                    <div className='col-xl-6'>
-                    <div id="currencyTable" className='card card-form'>
-                        <div className='card-body card-body-form card-form-crypto-name'>
-                        { `${cryptocurrency.name} (${cryptocurrency.symbol})`}
-                        </div>
-                    </div>
-                    </div>
-                    <div className='col-xl-3'></div>
-                </div>
-                </div>
-                <div className='container'>
                     <div className='row'>
                         <div className='col-xl-3'></div>
                         <div className='col-xl-6'>
-                        <div className="card card-form">
+                        <div id="holdingsForm" className="card card-form">
                             <div className="card-body card-body-form">
+                            <div className='form-header-holdings'>YOUR HOLDINGS</div>
+                            <div className='form-holdings'>{this.getHoldings()}</div>
+                            <div className='form-rate'>{`@ $${cryptocurrency.price_usd} per ${cryptocurrency.symbol}`}</div>
+                                <hr />
                                 {this.renderCardBody()}
+                                <hr />
+                                {this.renderInput()}
                             </div>
                         </div>
                         </div>
                         <div className='col-xl-3'></div>
                     </div>
                 </div>
-                {this.renderInput()}
             </div>
         )
     }

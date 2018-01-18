@@ -99,6 +99,10 @@ body {
 	margin: 0!important;
 }
 
+.card-body-form {
+	padding: 60px;
+}
+
 @media (max-width: 575px) { 
 	.jumbotron {
 		background-color: #FAFAFA;
@@ -118,8 +122,8 @@ body {
 		background-color: #fff;
 	}
 
-	.card-form {
-		/*border: none!important;*/
+	.card-body-form {
+		padding: 40px;
 	}
 	#currencyTable {
 		background-color: #fff;
@@ -130,6 +134,9 @@ body {
         margin-left: 130px!important;
         margin-right: 0px!important;
     }
+    .hide-holdings {
+    	display: none;
+    }
 }
 
 #Cryptofolio, .card-form-crypto-name {
@@ -137,7 +144,7 @@ body {
 }
 
 .form-subtitle {
-	text-align: left;
+	text-align: center;
 	/*margin: 0px!important;*/
 	/*padding-top: 8px;*/
 }
@@ -234,10 +241,6 @@ tr:hover {
 	border: solid 1px #eee;
 }
 
-.card-body-form {
-	padding: 20px;
-}
-
 .table-top-border {
 	border-top: none!important;
 }
@@ -258,6 +261,49 @@ tr:hover {
 
 #submit-crypto {
 	height: 38px;
+}
+
+.form-header-holdings {
+	/*color: #7AA4DE;*/
+	text-align: center;
+	font-size: 12px;
+}
+
+.form-holdings {
+	text-align: center;
+	/*color: #0667D0;*/
+	font-size: 40px;
+}
+
+.form-rate {
+	text-align: center;
+	/*color: #0667D0;*/
+	font-size: 12px;	
+}
+
+#holdingsForm {
+	margin-top: 70px;
+}
+
+.text-align-right {
+	text-align: right;
+}
+
+.hide-top-border {
+	border: none!important;
+	padding-left: none;
+}
+
+.hide-hover:hover {
+	background-color: #fff;
+	cursor: default;
+}
+.hide-hover {
+	/*color: #0667D0;*/
+}
+
+.form-hr {
+	/*border-color: #BCD1EE;*/
 }
 
 
