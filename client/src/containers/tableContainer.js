@@ -20,7 +20,7 @@ class tableContainer extends Component {
         let { cryptocurrencies } = this.props.cryptoReducer
         let { localStorage } = window
         let currentUser = JSON.parse(localStorage.user).username
-        let holdings = '0'
+        let holdings = '0.00'
         if (users) {
             users.forEach(user => {
                 if (user.username === currentUser) {

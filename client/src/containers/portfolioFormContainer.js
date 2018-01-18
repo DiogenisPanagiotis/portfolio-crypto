@@ -22,7 +22,7 @@ class portfolioFormContainer extends Component {
         let { localStorage } = window
         let currentUser = JSON.parse(localStorage.user).username
         let cryptoClicked = JSON.parse(localStorage.rowClicked).symbol
-        let holdings = '0.0000'
+        let holdings = '0.00'
         if (users) {
             users.forEach(user => {
                 if (user.username === currentUser) {

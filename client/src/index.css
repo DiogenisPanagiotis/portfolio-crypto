@@ -302,8 +302,8 @@ tr:hover {
 	/*color: #0667D0;*/
 }
 
-.form-hr {
-	/*border-color: #BCD1EE;*/
+a:hover {
+	color: rgba(0,0,0,.5)!important;
 }
 
 
