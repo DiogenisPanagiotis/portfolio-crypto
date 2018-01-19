@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux'
 import actions from '../actions/actions'
 import { withRouter } from 'react-router-dom'
 import NavContainer from './navContainer'
+import SecondaryNav from './secondaryNav'
 import TableContainer from './tableContainer'
 
 class dashboardContainer extends Component {
@@ -18,14 +19,13 @@ class dashboardContainer extends Component {
                 <NavContainer/>
                 <div className='container'>
                     <div className='row'>
-                        <div className='col-xl-3'></div>
-                        <div className='col-xl-6'>
+                        <div className='col-xl-2'></div>
+                        <div className='col-xl-8'>
                             <div id="currencyTable" className="jumbotron">
-                                <h5 className='table-header'>Cryptocurrencies</h5>
                                 <TableContainer/>
                             </div>
                         </div>
-                        <div className='col-xl-3'></div>
+                        <div className='col-xl-2'></div>
                     </div>
                 </div>
             </div>
