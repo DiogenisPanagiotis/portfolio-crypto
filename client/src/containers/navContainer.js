@@ -3,11 +3,12 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import actions from '../actions/actions'
 import { Link, withRouter } from 'react-router-dom'
+import arrow from '../icons/left-arrow.svg'
 
 class navContainer extends Component {
 
     logout() {
-        let { appReducer } = this.props
+        // let { appReducer } = this.props
         let { toggleSignedup } = this.props.actions
         toggleSignedup(true)
         localStorage.removeItem('user')
@@ -37,12 +38,32 @@ class navContainer extends Component {
         )
     }
 
+    renderBackBtn() {
+        if (window.location.pathname === '/form') {
+            return (
+                <Link to='/dashboard'>
+                    <button type="button" className="btn btn-primary btn-arrow">
+                        <img alt='arrow' className='arrow' src={arrow}/>
+                    </button>
+                </Link>
+            )
+        }
+    }
+
+    renderBrand() {
+        if (window.location.pathname === '/form') {
+            return
+        }
+        return <a id="Cryptofolio" className="navbar-brand mx-auto" href="/">Cryptofolio</a>
+    }
+
     render() {
         let { user } = window.localStorage
         let issuesUrl = 'https://github.com/DiogenisPanagiotis/portfolio-crypto/issues'
         return (
             <nav className="navbar fixed-top navbar-light">
-                <a id="Cryptofolio" className="navbar-brand mx-auto" href="/">Cryptofolio</a>
+                {this.renderBrand()}
+                {this.renderBackBtn()}
                 <ul className="navbar-nav ml-auto">
                     <li className="nav-item active">
                         <a className="nav-link" href="#"><span className="sr-only">(current)</span></a>

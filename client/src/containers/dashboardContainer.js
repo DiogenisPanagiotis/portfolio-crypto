@@ -17,15 +17,16 @@ class dashboardContainer extends Component {
         return (
             <div className='container-dash'>
                 <NavContainer/>
+                <SecondaryNav/>
+
                 <div className='container'>
                     <div className='row'>
-                        <div className='col-xl-2'></div>
-                        <div className='col-xl-8'>
-                            <div id="currencyTable" className="jumbotron">
-                                <TableContainer/>
-                            </div>
+                        <div className='col-xl-3'></div>
+                        <div className='col-xl-6'>
+                        <div className='margin-top'></div>
+                            <TableContainer/>
                         </div>
-                        <div className='col-xl-2'></div>
+                        <div className='col-xl-3'></div>
                     </div>
                 </div>
             </div>

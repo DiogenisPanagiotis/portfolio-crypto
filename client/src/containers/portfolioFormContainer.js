@@ -4,10 +4,10 @@ import { bindActionCreators } from 'redux'
 import actions from '../actions/actions'
 import { withRouter } from 'react-router-dom'
 import NavContainer from './navContainer'
+import icons from '../icons/icons'
 
 class portfolioFormContainer extends Component {
     componentDidMount() {
-        let { tableReducer } = this.props
         let { getUsers } = this.props.actions
         let { localStorage } = window
         if (!localStorage.user) {
@@ -17,7 +17,6 @@ class portfolioFormContainer extends Component {
     }
 
     getHoldings() {
-        let { getUsers } = this.props.actions
         let { users } = this.props.userReducer
         let { localStorage } = window
         let currentUser = JSON.parse(localStorage.user).username
@@ -48,12 +47,8 @@ class portfolioFormContainer extends Component {
                 <table className="table">
                   <tbody>
                     <tr className='hide-hover'>
-                      <th className='table-top-border' scope="row">Holdings</th>
-                      <td className='table-top-border text-align-right'>{this.getHoldings()}</td>
-                    </tr>
-                    <tr className='hide-hover'>
-                      <th className='hide-top-border' scope="row">Price</th>
-                      <td className='text-align-right hide-top-border'>{`$${JSON.parse(localStorage.rowClicked).price_usd}`}</td>
+                      <th className='hide-top-border table-top-border' scope="row">Price</th>
+                      <td className='table-top-border text-align-right hide-top-border'>{`$${JSON.parse(localStorage.rowClicked).price_usd}`}</td>
                     </tr>
                     <tr className='hide-hover'>
                       <th className='hide-top-border' scope="row">Change (1h)</th>
@@ -119,6 +114,20 @@ class portfolioFormContainer extends Component {
             </div>     
         )
     }
+    renderIcon() {
+        let { localStorage } = window
+        let sym = JSON.parse(localStorage.rowClicked).symbol.toLowerCase()
+        let svg = `${sym}.svg`
+        let list = icons.icons
+
+        for (let i = 0; i < list.length; i++) {
+            let svgInList = list[i]
+            if (svg === svgInList) {
+                let svgSource = require(`../icons/svg/${sym}.svg`)
+                return <img className='icon-form' src={svgSource}/>
+            }
+        }
+    }
 
     render() {
         let { tableReducer } = this.props
@@ -129,13 +138,13 @@ class portfolioFormContainer extends Component {
                 <NavContainer/>
                 <div className='container'>
                     <div className='row'>
-                        <div className='col-xl-3'></div>
-                        <div className='col-xl-6'>
+                        <div className='col-xl-4'></div>
+                        <div className='col-xl-4'>
                         <div id="holdingsForm" className="card card-form">
                             <div className="card-body card-body-form">
+                            <div className='form-icon'>{this.renderIcon()}</div>
                             <div className='form-header-holdings'>YOUR HOLDINGS</div>
                             <div className='form-holdings'>{this.getHoldings()}</div>
-                            <div className='form-rate'>{`@ $${cryptocurrency.price_usd} per ${cryptocurrency.symbol}`}</div>
                                 <hr />
                                 {this.renderCardBody()}
                                 <hr />
@@ -143,7 +152,7 @@ class portfolioFormContainer extends Component {
                             </div>
                         </div>
                         </div>
-                        <div className='col-xl-3'></div>
+                        <div className='col-xl-4'></div>
                     </div>
                 </div>
             </div>

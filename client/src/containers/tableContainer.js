@@ -10,15 +10,20 @@ class tableContainer extends Component {
     componentDidMount() {
         let { getUsers } = this.props.actions
         let { getCryptos } = this.props.actions
+        window.addEventListener('resize', this.resize)
         getCryptos(0, 100).then(() => {
             getUsers()
         })
     }
 
+    resize = () => this.forceUpdate()
+
+    componentWillUnmount() {
+      window.removeEventListener('resize', this.resize)
+    }
+
     getHoldings(cryptocurrency) {
-        let { getUsers } = this.props.actions
         let { users } = this.props.userReducer
-        let { cryptocurrencies } = this.props.cryptoReducer
         let { localStorage } = window
         let currentUser = JSON.parse(localStorage.user).username
         let holdings = '0.00'
@@ -50,21 +55,69 @@ class tableContainer extends Component {
     renderIcon(symbol) {
         let sym = symbol.toLowerCase()
         let svg = `${sym}.svg`
-        let pathToSvg = `../icons/svg/${svg}`
         let list = icons.icons
 
         for (let i = 0; i < list.length; i++) {
             let svgInList = list[i]
             if (svg === svgInList) {
 
-                console.log(pathToSvg)
-
                 let svgSource = require(`../icons/svg/${sym}.svg`)
 
-                return <img className='icon' src={svgSource}/>
+                return <img className='icon-lg' src={svgSource}/>
             }
         }
-        return symbol
+        return <div id='circle'></div>
+    }
+
+    trimPrice(price) {
+        if (price.indexOf('.') !== -1) {
+            let p = price.split('.')
+            let left = p[0]
+            let right = p[1].slice(0, 5)
+            return `${left}.${right}`
+        }
+        return price
+    }
+
+    renderJumbos() {
+        let { cryptocurrencies } = this.props.cryptoReducer
+        let width = window.innerWidth
+        if (cryptocurrencies) {    
+            return (
+                <div>
+                    {
+                        cryptocurrencies.map((cryptocurrency, i) => {
+                            let { name, symbol, price_usd, percent_change_24h } = cryptocurrency
+                            percent_change_24h = percent_change_24h === null ? '?' : percent_change_24h
+                            let percentString = percent_change_24h === '?' ? `${percent_change_24h}` : `${percent_change_24h}%`
+                            return (
+                                    <div className="jumbotron jumbo-coin" onClick={() => this.rowClicked(cryptocurrency)} key={i}>
+                                        <div className="container">
+                                            <div className="row">
+                                                <div className="col-2 pad-0">
+                                                    <div className='vertical-align'>
+                                                        {this.renderIcon(symbol)}
+                                                    </div>
+                                                </div>
+                                                <div className="col-4 pad-0">
+                                                    <div className='coin coin-name align-left'>{width <= 770 ? symbol : name.toUpperCase()}</div>
+                                                </div>
+                                                <div className="col-3 pad-0">
+                                                    <div className='coin align-center'>{`$${this.trimPrice(price_usd)}`}</div>
+                                                </div>
+                                                <div className={`col-3 pad-0 ${percent_change_24h[0] === '-' ? 'negative' : 'positive'}`}>
+                                                    <div className='coin align-right'>{ percentString }</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                            )
+                        })
+                    }
+
+                </div>
+            )
+        }
     }
 
     renderTables() {
@@ -125,7 +178,7 @@ class tableContainer extends Component {
 
     render() {
         return (
-            <div>{this.renderTables()}</div>
+            <div>{this.renderJumbos()}</div>
         )
     }
 

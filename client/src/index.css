@@ -100,7 +100,7 @@ body {
 }
 
 .card-body-form {
-	padding: 60px;
+	padding: 50px;
 }
 
 @media (max-width: 575px) { 
@@ -118,11 +118,9 @@ body {
 		background-color: #FAFAFA;
 		border: none;		
 	}
-	.card-body-form {
-		background-color: #fff;
-	}
 
 	.card-body-form {
+		background-color: #fff;
 		padding: 40px;
 	}
 	#currencyTable {
@@ -134,7 +132,10 @@ body {
         margin-left: 130px!important;
         margin-right: 0px!important;
     }
-
+    .jumbo-coin {
+    	background-color: #fff;
+		border: solid 1px #eee;
+    }
 }
 
 @media (max-width: 768px) {
@@ -313,10 +314,10 @@ a:hover {
 	color: rgba(0,0,0,.5)!important;
 }
 
-.icon {
+/*.icon {
 	height: 20px;
 	width: 20px;
-}
+}*/
 
 .secondary {
 	margin-top: 57px;
@@ -353,7 +354,159 @@ a:hover {
 	border-top: none;
 }
 
+.list-group-item {
+	margin-bottom: 10px;
+	border-radius: 10px;
+}
 
+.badge-pill {
+	background-color: #eee;
+	 display: flex;
+	 float: right;
+}
 
+.neg {
+	 margin-left: auto;
+}
+
+.jumbotron-fluid {
+	background-color: #e9ecef!important;
+	padding-right: 0!important;
+  padding-left: 0!important;
+  border-radius: 0!important;
+}
+
+.icon-lg {
+    overflow: hidden;
+    transition-duration: 0.8s;
+    transition-property: transform;
+		height: 100%;
+}
+.icon-lg:hover {
+    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+}
+
+.icon-form {
+    overflow: hidden;
+    transition-duration: 0.8s;
+    transition-property: transform;
+	height: 70px;
+	width: 70px;
+	margin-bottom: 20px;
+}
+.icon-form:hover {
+    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+}
+
+.margin-top {
+	margin-top: 110px;
+}
+
+.coin {
+	font-weight: 600;
+	font-size: 0.8rem;
+	height: 100%;
+	padding-top: 7px;
+	text-align: center;
+}
+
+.coin-name {
+	/*padding-left: 20px;*/
+}
+
+.jumbo-coin {
+	padding: 18px;
+	margin-top: 10px;
+	/*background-color: #F4F7FA;*/
+}
+
+.pad-0 {
+	padding: 0px!important;
+}
+
+.align-left {
+	text-align: left;
+}
+
+.align-right {
+	text-align: right;
+}
+
+.align-center {
+	text-align: center;
+}
+.jumbo-coin:hover {
+	cursor: pointer;
+	background-color: #FAFAFA;
+}
+
+.jumbo-secondary-coin {
+	padding: 10px 20px;
+	margin-top: 10px;
+	background-color: #fff;
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	border-bottom: none;
+	border-radius: 0;
+}
+
+.fixed-secondary-nav {
+    position: fixed;
+    width: 100%;
+    z-index: 5;
+    margin-top: 40px;
+    background-color: #fff;
+    border: solid 1px #eee;
+    border-top: none;
+	border-left: none;
+	border-right: none;
+}
+
+.s-nav-txt {
+	font-size: 0.6rem;
+	color: #bbb;
+}
+
+#circle {
+	width: 32px;
+	height: 32px;
+	background: #212529;
+	-moz-border-radius: 50px;
+	-webkit-border-radius: 50px;
+	border-radius: 50px;
+}
+
+#form-circle {
+	text-align: center;
+	width: 100px;
+	height: 100px;
+	background: #212529;
+	-moz-border-radius: 50px;
+	-webkit-border-radius: 50px;
+	border-radius: 50px;
+}
+
+.form-icon {
+	text-align: center;
+}
+
+.arrow {
+	height: 20px;
+	width: 30px;
+	color: white;
+}
+
+.btn-arrow {
+	background-color: #fff;
+	border: none;
+}
+
+.btn-arrow:hover {
+	background-color: #fff;
+	border: none;
+}
 
 
