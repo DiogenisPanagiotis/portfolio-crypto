@@ -573,4 +573,9 @@ a:hover {
 	color: #aaa;
 }
 
+.jumbo-coin:last-child {
+	border-bottom: solid 1px #eee;
+	margin-bottom: 40px;
+}
+
 
