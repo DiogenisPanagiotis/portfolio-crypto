@@ -67,7 +67,7 @@ class loginContainer extends Component {
                 <div className='row'>
                     <div className='col-lg-4'></div>
                     <div className='col-lg-4'>
-                        <div className="jumbotron jumbotron-login">
+                        <div id='loginjumbo' className="jumbotron jumbotron-login">
                             <h1 className="cryptofolio">Cryptofolio</h1>
                             <div className="card">
                                 <div className={`card-body ${invalid ? 'card-body-login' : ''}`}>

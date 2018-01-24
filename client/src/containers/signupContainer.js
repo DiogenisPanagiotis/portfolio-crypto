@@ -75,7 +75,7 @@ class signupContainer extends Component {
                 <div className='row'>
                     <div id='mobile' className='col-lg-4'></div>
                     <div className='col-lg-4'>
-                        <div className='jumbotron'>
+                        <div id='signupjumbo' className='jumbotron'>
                             <h1 className="cryptofolio">Cryptofolio</h1>
                             <div className='card'>
                                 <h5 className='card-subtitle mb-2 text-muted'>
