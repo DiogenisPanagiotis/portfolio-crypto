@@ -19,11 +19,11 @@ class loginContainer extends Component {
         getUsers()        
     }
 
-    resize = () => this.forceUpdate()
-
     componentWillUnmount() {
-      window.removeEventListener('resize', this.resize)
+        window.removeEventListener('resize', this.resize)
     }
+
+    resize = () => this.forceUpdate()
 
     verifyUser() {
         let { getUsers, setInvalid } = this.props.actions

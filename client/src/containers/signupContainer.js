@@ -26,7 +26,7 @@ class signupContainer extends Component {
     resize = () => this.forceUpdate()
 
     componentWillUnmount() {
-      window.removeEventListener('resize', this.resize)
+        window.removeEventListener('resize', this.resize)
     }
 
     addUser() {

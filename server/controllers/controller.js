@@ -28,22 +28,18 @@ module.exports = {
                     holdings: req.body.holdings
                 }
 
-                // let found = false
+                let found = false
 
-                // model.cryptocurrencies.forEach((cryptocurrency, i) => {     
-                //     if (cryptocurrency.name === req.body.name) {
-                //         console.log('before ', model.cryptocurrencies[i] )
-                //         cryptocurrency.holdings = req.body.holdings
-                //         // model.cryptocurrencies[i] = crypto
-                //         console.log('after', model.cryptocurrencies[i] )
-                //     }
-                //     found = true
-                // })
+                model.cryptocurrencies.forEach((cryptocurrency, i) => {     
+                    if (cryptocurrency.name === req.body.name) {
+                        model.cryptocurrencies.splice(i, 1, crypto);
+                        found = true
+                    }
+                })
 
-                // if (!found) {
-                    console.log('adding crypto!')
+                if (!found) {
                     model.cryptocurrencies.push(crypto)
-                // }
+                }
 
                 model.save(error => {
                     error ? res.status(500).send(error) : res.status(204).json({message: 'Model Updated!'})

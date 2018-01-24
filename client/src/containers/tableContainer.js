@@ -8,8 +8,8 @@ import icons from '../icons/icons'
 class tableContainer extends Component {
 
     componentDidMount() {
-        let { getUsers } = this.props.actions
-        let { getCryptos } = this.props.actions
+        let { getUsers, getCryptos } = this.props.actions
+        let currentUser = JSON.parse(localStorage.user).username
         window.addEventListener('resize', this.resize)
         getCryptos(0, 100).then(() => {
             getUsers()
@@ -94,6 +94,9 @@ class tableContainer extends Component {
                                     <div className="jumbotron jumbo-coin" onClick={() => this.rowClicked(cryptocurrency)} key={i}>
                                         <div className="container">
                                             <div className="row">
+                                                <div className="col-1 pad-0">
+                                                    <div className='coin coin-name align-left'>{i+1}</div>
+                                                </div>
                                                 <div className="col-2 pad-0">
                                                     <div className='vertical-align'>
                                                         {this.renderIcon(symbol)}
@@ -105,7 +108,7 @@ class tableContainer extends Component {
                                                 <div className="col-3 pad-0">
                                                     <div className='coin align-center'>{`$${this.trimPrice(price_usd)}`}</div>
                                                 </div>
-                                                <div className={`col-3 pad-0 ${percent_change_24h[0] === '-' ? 'negative' : 'positive'}`}>
+                                                <div className={`col-2 pad-0 ${percent_change_24h[0] === '-' ? 'negative' : 'positive'}`}>
                                                     <div className='coin align-right'>{ percentString }</div>
                                                 </div>
                                             </div>
@@ -118,62 +121,6 @@ class tableContainer extends Component {
                 </div>
             )
         }
-    }
-
-    renderTables() {
-        let { cryptocurrencies } = this.props.cryptoReducer
-
-        if (cryptocurrencies) {       
-            return (
-                <div className="table-responsive-xs">
-                    <table className="table table-fixed">
-                        <thead>
-                            <tr>
-                                <th className='table-header-border' scope="col">#</th>
-                                <th className='table-header-border' scope="col">ICON</th>
-                                <th className='table-header-border hide-holdings' scope="col">NAME</th>
-                                <th className='table-header-border' scope="col">PRICE</th>
-                                <th className='table-header-border hide-holdings' scope="col">HOLDINGS</th>
-                                <th className='table-header-border percent' scope="col">CHANGE</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        {
-                            cryptocurrencies.map((cryptocurrency, i) => {
-                                let { name, symbol, price_usd, percent_change_24h } = cryptocurrency
-                                percent_change_24h = percent_change_24h === null ? '?' : percent_change_24h
-                                let percentString = percent_change_24h === '?' ? `${percent_change_24h}` : `${percent_change_24h}%`
-                                return (
-                                    <tr onClick={() => this.rowClicked(cryptocurrency)} key={i}>
-                                        <th scope="row">{i + 1}</th>
-                                        <td>{this.renderIcon(symbol)}</td>
-                                        <td className='hide-holdings'>{name}</td>
-                                        <td className='price-usd'>{`$${price_usd}`}</td>
-                                        <td className='hide-holdings'>{this.getHoldings(cryptocurrency)}</td>
-                                        <td className={`percent ${percent_change_24h[0] === '-' ? 'negative' : 'positive'}`}>
-                                            { percentString }
-                                        </td>
-                                    </tr>
-                                )
-                            })
-                        }
-                        </tbody>
-                    </table>
-                </div>
-            ) 
-        } else {
-            return this.renderFetching()
-        }
-    }
-
-    renderFetching = () => {
-        return (
-            <div className="card">
-              <div className="card-body">
-                <p className="card-text">Fetching...</p>
-              </div>
-            </div>
-        )
     }
 
     render() {

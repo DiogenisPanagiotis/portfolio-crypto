@@ -1,5 +1,6 @@
 body {
 	background-color: #FAFAFA;
+	/*background-color: #fff;*/
 }
 
 .jumbotron {
@@ -375,14 +376,18 @@ a:hover {
   padding-left: 0!important;
   border-radius: 0!important;
 }
-
-.icon-lg {
+.topcoin {
     overflow: hidden;
     transition-duration: 0.8s;
     transition-property: transform;
-		height: 100%;
 }
-.icon-lg:hover {
+.icon-lg{
+    overflow: hidden;
+    transition-duration: 0.8s;
+    transition-property: transform;
+		height: 25px;
+}
+.icon-lg:hover, .topcoin:hover {
     transform: rotate(360deg);
     -webkit-transform: rotate(360deg);
 }
@@ -401,14 +406,14 @@ a:hover {
 }
 
 .margin-top {
-	margin-top: 110px;
+	margin-top: 130px;
 }
 
 .coin {
 	font-weight: 600;
-	font-size: 0.8rem;
+	font-size: 0.7rem;
 	height: 100%;
-	padding-top: 7px;
+	padding-top: 6px;
 	text-align: center;
 }
 
@@ -417,9 +422,15 @@ a:hover {
 }
 
 .jumbo-coin {
-	padding: 18px;
+	padding: 14px 18px;
 	margin-top: 10px;
-	/*background-color: #F4F7FA;*/
+	background-color: #fff;
+	border-top: solid 1px #eee;
+	border-left: none;
+	border-right: none;
+	border-bottom: none;
+	border-radius: 0;
+	margin-top: 0px;
 }
 
 .pad-0 {
@@ -443,9 +454,9 @@ a:hover {
 }
 
 .jumbo-secondary-coin {
-	padding: 10px 20px;
+	padding: 10px 18px;
 	margin-top: 10px;
-	background-color: #fff;
+	background-color: #fafafa;
 	border-top: none;
 	border-left: none;
 	border-right: none;
@@ -458,7 +469,7 @@ a:hover {
     width: 100%;
     z-index: 5;
     margin-top: 40px;
-    background-color: #fff;
+    background-color: #fafafa;
     border: solid 1px #eee;
     border-top: none;
 	border-left: none;
@@ -468,6 +479,7 @@ a:hover {
 .s-nav-txt {
 	font-size: 0.6rem;
 	color: #bbb;
+	padding-top: 8px;
 }
 
 #circle {
@@ -507,6 +519,52 @@ a:hover {
 .btn-arrow:hover {
 	background-color: #fff;
 	border: none;
+}
+
+.fixed {
+	position: fixed;
+}
+
+.user-side {
+	margin-top: 130px;
+	background-color: #FAFAFA;
+}
+
+.err-container {
+	margin-top: 70px;
+}
+
+.topcoin {
+	height: 40px;
+	width: 40px;
+}
+
+.topcoin-container {
+	/*border: solid 1px red;*/
+	margin-bottom: 20px;
+	padding-right: 0px;
+}
+
+.row-r {
+	/*border: solid 1px red;*/
+
+}
+
+.topcoin-sym {
+	/*text-align: center;*/
+	font-weight: 500;
+	padding-top: 6px;
+	font-size: 0.7rem;
+}
+
+.topcoin-holdings {
+	font-size: 0.7rem;
+	color: #bbb;
+}
+
+.topcoin-hr {
+	border-color: #eee;
+	margin-bottom: 20px;
 }
 
 

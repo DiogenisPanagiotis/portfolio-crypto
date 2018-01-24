@@ -6,7 +6,7 @@ const errorContainer = () => {
 	return (
 		<div className='container-dash'>
 			<NavContainer/> 
-			<div className='container'>
+			<div className='container err-container'>
 				<div className='row'>
 					<div className='col-lg-4'></div>
 						<div className='col-lg-4'>
