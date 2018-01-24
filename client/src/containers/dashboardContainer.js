@@ -34,12 +34,12 @@ class dashboardContainer extends Component {
         if (users) {
             return (
                 <div>
-                {users.map(user => {
+                {users.map((user, x) => {
                     if (user.username === currentUser) {
                         if (user.cryptocurrencies.length > 0) {
                             console.log('here')
                             return (
-                                <div>
+                                <div key={x}>
                                     {user.cryptocurrencies.map((c, i) => {
                                         if (i > 4) {
                                             return
@@ -47,7 +47,7 @@ class dashboardContainer extends Component {
                                         let svg = c.symbol.toLowerCase()
                                         let svgSrc = require(`../icons/svg/${svg}.svg`)
                                         return (
-                                        <div className='container topcoin-container'>
+                                        <div className='container topcoin-container' key={i}>
                                             <div className='row'>
                                                 <div className='col-5'>
                                                     <img className='topcoin' src={svgSrc}/>
@@ -118,7 +118,6 @@ class dashboardContainer extends Component {
             <div className='container-dash'>
                 <NavContainer/>
                 <SecondaryNav/>
-
                 <div className='container'>
                     <div className='row'>
                         <div className='col-xl-2'></div>
@@ -128,8 +127,8 @@ class dashboardContainer extends Component {
                         </div>
                         <div className='col-xl-4'>
                             <div className='jumbotron user-side fixed'> 
-                                <div className='align-center'><h6>{`@${currentUser}`}</h6></div>
-                                <div className='align-center'><h6>{this.renderTotalHoldings()}</h6></div>
+                                <div className='align-center'><h5>{this.renderTotalHoldings()}</h5></div>
+                                <div className='user-side-name align-center'><h6>{`@${currentUser}`}</h6></div>
                                 <hr className='topcoin-hr' />
                                 {this.renderTopCoins()}
                             </div>

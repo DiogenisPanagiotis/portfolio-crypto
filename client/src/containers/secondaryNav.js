@@ -5,7 +5,19 @@ import actions from '../actions/actions'
 import { withRouter } from 'react-router-dom'
 
 class secondaryNav extends Component {
+
+    componentDidMount() {
+        window.addEventListener('resize', this.resize)
+    }
+
+    resize = () => this.forceUpdate()
+
+    componentWillUnmount() {
+      window.removeEventListener('resize', this.resize)
+    }
+
     render() {
+        let width = window.innerWidth
         return (
                 <div className='fixed-secondary-nav'>
                     <div className='container'>
@@ -28,7 +40,11 @@ class secondaryNav extends Component {
                                                     <div className='coin align-center s-nav-txt'>PRICE</div>
                                                 </div>
                                                 <div className="col-2 pad-0">
-                                                    <div className='coin align-right s-nav-txt'>% CHANGE</div>
+                                                    { width < 379 ?
+                                                        <div className='coin align-right s-nav-txt'>%</div>
+                                                        :
+                                                        <div className='coin align-right s-nav-txt'>% CHANGE</div>
+                                                    }
                                                 </div>
                                             </div>
 

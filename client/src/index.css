@@ -413,7 +413,7 @@ a:hover {
 	font-weight: 600;
 	font-size: 0.7rem;
 	height: 100%;
-	padding-top: 6px;
+	padding-top: 5px;
 	text-align: center;
 }
 
@@ -426,8 +426,8 @@ a:hover {
 	margin-top: 10px;
 	background-color: #fff;
 	border-top: solid 1px #eee;
-	border-left: none;
-	border-right: none;
+	border-left: solid 1px #eee;
+	border-right: solid 1px #eee;
 	border-bottom: none;
 	border-radius: 0;
 	margin-top: 0px;
@@ -483,8 +483,8 @@ a:hover {
 }
 
 #circle {
-	width: 32px;
-	height: 32px;
+	width: 25px;
+	height: 25px;
 	background: #212529;
 	-moz-border-radius: 50px;
 	-webkit-border-radius: 50px;
@@ -529,6 +529,7 @@ a:hover {
 	margin-top: 130px;
 	background-color: #FAFAFA;
 	min-width: 16%;
+	border-radius: 0;
 }
 
 .err-container {
@@ -560,12 +561,16 @@ a:hover {
 
 .topcoin-holdings {
 	font-size: 0.7rem;
-	color: #bbb;
+	color: #aaa;
 }
 
 .topcoin-hr {
 	border-color: #eee;
 	margin-bottom: 20px;
+}
+
+.user-side-name {
+	color: #aaa;
 }
 
 
