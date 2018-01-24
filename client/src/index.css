@@ -528,6 +528,7 @@ a:hover {
 .user-side {
 	margin-top: 130px;
 	background-color: #FAFAFA;
+	min-width: 16%;
 }
 
 .err-container {
