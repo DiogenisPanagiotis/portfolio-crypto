@@ -135,7 +135,10 @@ body {
     }
     .jumbo-coin {
     	background-color: #fff;
-		border: solid 1px #eee;
+			border: solid 1px #f6f6f6;
+    }
+    .user-side {
+    	display: none;
     }
 }
 
@@ -281,7 +284,7 @@ tr:hover {
 .form-holdings {
 	text-align: center;
 	/*color: #0667D0;*/
-	font-size: 40px;
+	font-size: 32px;
 }
 
 .form-rate {
@@ -291,7 +294,7 @@ tr:hover {
 }
 
 #holdingsForm {
-	margin-top: 70px;
+	margin-top: 86px;
 }
 
 .text-align-right {
@@ -415,6 +418,7 @@ a:hover {
 	height: 100%;
 	padding-top: 5px;
 	text-align: center;
+	color: #9194A0;
 }
 
 .coin-name {
@@ -422,19 +426,26 @@ a:hover {
 }
 
 .jumbo-coin {
-	padding: 14px 18px;
+	padding: 18px 20px;
 	margin-top: 10px;
 	background-color: #fff;
 	border-top: solid 1px #eee;
 	border-left: solid 1px #eee;
 	border-right: solid 1px #eee;
 	border-bottom: none;
-	border-radius: 0;
+	/*border-radius: 0;*/
 	margin-top: 0px;
+
+	border: solid 1px #f6f6f6;
+	margin-top: 8px;
 }
 
 .pad-0 {
 	padding: 0px!important;
+}
+
+.pad-rank {
+	padding-left: 8px;
 }
 
 .align-left {
@@ -454,12 +465,12 @@ a:hover {
 }
 
 .jumbo-secondary-coin {
-	padding: 10px 18px;
-	margin-top: 10px;
+	padding: 10px 20px;
+	margin-top: 0px;
 	background-color: #fafafa;
 	border-top: none;
-	border-left: none;
-	border-right: none;
+	border-left: solid 1px #fafafa;
+  border-right: solid 1px #fafafa;
 	border-bottom: none;
 	border-radius: 0;
 }
@@ -468,7 +479,7 @@ a:hover {
     position: fixed;
     width: 100%;
     z-index: 5;
-    margin-top: 40px;
+    margin-top: 73px;
     background-color: #fafafa;
     border: solid 1px #eee;
     border-top: none;
@@ -479,7 +490,7 @@ a:hover {
 .s-nav-txt {
 	font-size: 0.6rem;
 	color: #bbb;
-	padding-top: 8px;
+	padding-top: 0px;
 }
 
 #circle {
@@ -527,9 +538,10 @@ a:hover {
 
 .user-side {
 	margin-top: 130px;
-	background-color: #FAFAFA;
-	min-width: 16%;
-	border-radius: 0;
+	background-color: #fff;
+	min-width: 220px;
+	border-radius: 0.3;
+	border: solid 1px #f6f6f6;
 }
 
 .err-container {
@@ -574,7 +586,7 @@ a:hover {
 }
 
 .jumbo-coin:last-child {
-	border-bottom: solid 1px #eee;
+	/*border-bottom: solid 1px #eee;*/
 	margin-bottom: 40px;
 }
 
@@ -586,3 +598,105 @@ a:hover {
 	margin-top: 32%;
 }
 
+.navbar {
+	padding: 1rem;
+}
+
+.jumbo-coin:hover .icon-lg {
+    transition: 0.8s;
+    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -o-transform: rotate (360deg);
+}
+
+#portfolio-form {
+	margin-top: 130px;
+}
+
+
+
+
+
+
+
+.btn-table {
+	font-size: 0.7rem;
+	color: #aaa;
+	background-color: #fff;
+	border-color: #aaa;
+}
+
+.jumbo-coin:hover {
+	background-color: #fff;
+}
+
+.btn-success {
+	border-color: #3cd483;
+}
+
+.negz {
+	border: none;
+	background-color: rgb(255, 209, 209);
+	color: #FC6163;
+}
+.negz:hover {
+	border: none;
+	background-color: rgb(255, 209, 209);
+	color: #FC6163;
+}
+
+.poz {
+	border: none;
+	text-align: center;
+	background-color: rgb(197, 247, 219);
+	color: #3cd483;
+}
+
+.poz:hover {
+	border: none;
+	background-color: rgb(197, 247, 219);
+	color: #3cd483;
+}
+
+.btn-price {
+	border: none;
+	text-align: center;
+	background-color: #DEF2FA;
+	color: rgb(102, 170, 255);
+}
+
+.btn-price:hover {
+	border: none;
+	background-color: #DEF2FA;
+	color: rgb(102, 170, 255);
+}
+
+.btn-rank {
+	border: none;
+	text-align: center;
+	background-color: #f2f2f2;
+	background-color: #CBCBFD;
+	background-color: rgb(219, 219, 255);
+	color: #9194A0;
+	color: #6467F7;
+	color: rgb(113, 117, 237);
+}
+
+.btn-rank:hover {
+	border: none;
+	background-color: #f2f2f2;
+	background-color: #CBCBFD;
+	background-color: rgb(219, 219, 255);
+	color: #9194A0;
+	color: #6467F7;
+	color: rgb(113, 117, 237);
+}
+
+.vertical-align {
+	text-align: center;
+}
+
+.holder {
+	border-radius: 12px;
+}

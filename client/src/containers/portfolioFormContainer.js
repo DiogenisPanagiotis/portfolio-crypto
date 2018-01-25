@@ -155,9 +155,45 @@ class portfolioFormContainer extends Component {
                         <div className='col-xl-4'></div>
                     </div>
                 </div>
+
             </div>
         )
     }
+    
+    // render() {
+    //     let { tableReducer } = this.props
+    //     let { localStorage } = window
+    //     let cryptocurrency = JSON.parse(localStorage.rowClicked)
+    //     return (
+    //         <div id='portfolio-form' className='container'>
+    //             <NavContainer/>
+    //             <div className='row'>
+
+    //                 <div className='col-2'></div>
+
+    //                 <div className='col-5'>
+    //                     <div className='jumbotron'>
+    //                     <h5>Statistics</h5>
+    //                     </div>
+    //                 </div>
+
+    //                 <div className='col-3'>
+    //                     <div className='jumbotron'>
+    //                         <div className='align-center'>{this.renderIcon()}</div>
+    //                         <div className='form-holdings'>{this.getHoldings()}</div>
+    //                         <hr/>
+
+    //                         {this.renderInput()}
+    //                     </div>
+    //                 </div>
+
+    //                 <div className='col-2'></div>
+
+    //             </div>
+
+    //         </div>
+    //     )
+    // }
 }
 
 function mapStateToProps(state) {

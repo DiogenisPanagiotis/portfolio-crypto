@@ -66,7 +66,7 @@ class tableContainer extends Component {
                 return <img className='icon-lg' src={svgSource}/>
             }
         }
-        return <div id='circle'></div>
+        return <img className='icon-lg holder' src="http://via.placeholder.com/25.png/aaa?text=."/>
     }
 
     trimPrice(price) {
@@ -88,28 +88,40 @@ class tableContainer extends Component {
                     {
                         cryptocurrencies.map((cryptocurrency, i) => {
                             let { name, symbol, price_usd, percent_change_24h } = cryptocurrency
+                            let { innerWidth } = window
                             percent_change_24h = percent_change_24h === null ? '?' : percent_change_24h
                             let percentString = percent_change_24h === '?' ? `${percent_change_24h}` : `${percent_change_24h}%`
+                            let colRank = innerWidth < 376 ? 'col-2 pad-0' : 'col-1 pad-0'
+                            let colName = innerWidth < 376 ? 'col-3 pad-0' : 'col-4 pad-0'
+                            let divName = innerWidth < 376 ? 'coin coin-name align-left' : 'coin coin-name align-left'
                             return (
                                     <div className="jumbotron jumbo-coin" onClick={() => this.rowClicked(cryptocurrency)} key={i}>
                                         <div className="container">
                                             <div className="row">
-                                                <div className="col-1 pad-0">
-                                                    <div className='coin coin-name align-left'>{i+1}</div>
+                                                <div className={colRank}>
+                                                    <div className='align-left price-pad'>
+                                                        <button type="button" className='btn btn-sm btn-table btn-rank align-left'>{i+1}</button>
+                                                    </div>
                                                 </div>
                                                 <div className="col-2 pad-0">
-                                                    <div className='vertical-align'>
+                                                    <div className={innerWidth < 376 ? 'align-left' : 'align-center'}>
                                                         {this.renderIcon(symbol)}
                                                     </div>
                                                 </div>
-                                                <div className="col-4 pad-0">
-                                                    <div className='coin coin-name align-left'>{width <= 770 ? symbol : name.toUpperCase()}</div>
+                                                <div className={colName}>
+                                                    <div className='coin coin-name align-left'>
+                                                        {width <= 770 ? symbol : name.toUpperCase()}
+                                                    </div>
                                                 </div>
                                                 <div className="col-3 pad-0">
-                                                    <div className='coin align-center'>{`$${this.trimPrice(price_usd)}`}</div>
+                                                    <div className='align-center price-pad'>
+                                                        <button type="button" className='btn btn-sm btn-table btn-price align-right'>{`$${this.trimPrice(price_usd)}`}</button>
+                                                    </div>
                                                 </div>
                                                 <div className={`col-2 pad-0 ${percent_change_24h[0] === '-' ? 'negative' : 'positive'}`}>
-                                                    <div className='coin align-right'>{ percentString }</div>
+                                                    <div className='align-right percent-pad'>
+                                                        <button type="button" className={`btn btn-sm btn-table btn-success align-right ${percent_change_24h[0] === '-' ? 'negz' : 'poz'}`}>{percentString}</button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

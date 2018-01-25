@@ -17,7 +17,10 @@ class secondaryNav extends Component {
     }
 
     render() {
-        let width = window.innerWidth
+        let { innerWidth } = window
+        let colRank = innerWidth < 376 ? 'col-2 pad-rank' : 'col-1 pad-rank'
+        let colName = innerWidth < 376 ? 'col-3 pad-0' : 'col-4 pad-0'
+        let iconClass = innerWidth < 376 ? 'coin align-left s-nav-txt' : 'coin align-center s-nav-txt'
         return (
                 <div className='fixed-secondary-nav'>
                     <div className='container'>
@@ -27,21 +30,21 @@ class secondaryNav extends Component {
                                     <div className="jumbotron jumbo-secondary-coin">
                                         <div className="container">
                                             <div className="row">
-                                                <div className="col-1 pad-0">
+                                                <div className={colRank}>
                                                     <div className='coin align-left s-nav-txt'>#</div>
                                                 </div>
                                                 <div className="col-2 pad-0">
-                                                    <div className='coin align-left s-nav-txt'>ICON</div>
+                                                    <div className={iconClass}>ICON</div>
                                                 </div>
-                                                <div className="col-4 pad-0">
+                                                <div className={colName}>
                                                     <div className='coin align-left s-nav-txt'>NAME</div>
                                                 </div>
                                                 <div className="col-3 pad-0">
                                                     <div className='coin align-center s-nav-txt'>PRICE</div>
                                                 </div>
                                                 <div className="col-2 pad-0">
-                                                    { width < 379 ?
-                                                        <div className='coin align-right s-nav-txt'>%</div>
+                                                    { innerWidth < 379 ?
+                                                        <div className='coin align-right s-nav-txt'>% 24h</div>
                                                         :
                                                         <div className='coin align-right s-nav-txt'>% CHANGE</div>
                                                     }

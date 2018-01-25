@@ -20,7 +20,7 @@ class dashboardContainer extends Component {
     }
 
     componentWillMount() {
-        document.body.style.backgroundColor = '#fff'
+        document.body.style.backgroundColor = '#fafafa'
     }
 
     componentWillUnmount() {
@@ -49,10 +49,10 @@ class dashboardContainer extends Component {
                                         return (
                                         <div className='container topcoin-container' key={i}>
                                             <div className='row'>
-                                                <div className='col-5'>
+                                                <div className='col-5 pad-0'>
                                                     <img className='topcoin' src={svgSrc}/>
                                                 </div>
-                                                <div className='col-7'>
+                                                <div className='col-7 pad-0'>
                                                     <div className='row'>
                                                         <div className='col'>
                                                             <div className='topcoin-sym'>{c.name.toUpperCase()}</div>
@@ -127,8 +127,8 @@ class dashboardContainer extends Component {
                         </div>
                         <div className='col-xl-4'>
                             <div className='jumbotron user-side fixed'> 
-                                <div className='align-center'><h5>{this.renderTotalHoldings()}</h5></div>
-                                <div className='user-side-name align-center'><h6>{`@${currentUser}`}</h6></div>
+                                <div className='align-left'><h5>{this.renderTotalHoldings()}</h5></div>
+                                <div className='user-side-name align-left'><h6>{`@${currentUser}`}</h6></div>
                                 <hr className='topcoin-hr' />
                                 {this.renderTopCoins()}
                             </div>
