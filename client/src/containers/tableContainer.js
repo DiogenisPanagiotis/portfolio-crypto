@@ -93,7 +93,6 @@ class tableContainer extends Component {
                             let percentString = percent_change_24h === '?' ? `${percent_change_24h}` : `${percent_change_24h}%`
                             let colRank = innerWidth < 376 ? 'col-2 pad-0' : 'col-1 pad-0'
                             let colName = innerWidth < 376 ? 'col-3 pad-0' : 'col-4 pad-0'
-                            let divName = innerWidth < 376 ? 'coin coin-name align-left' : 'coin coin-name align-left'
                             return (
                                     <div className="jumbotron jumbo-coin" onClick={() => this.rowClicked(cryptocurrency)} key={i}>
                                         <div className="container">
@@ -109,13 +108,13 @@ class tableContainer extends Component {
                                                     </div>
                                                 </div>
                                                 <div className={colName}>
-                                                    <div className='coin coin-name align-left'>
-                                                        {width <= 770 ? symbol : name.toUpperCase()}
+                                                    <div className='align-left'>
+                                                        <button type="button" className='btn btn-sm btn-table btn-name align-left'>{width <= 770 ? symbol : name.toUpperCase()}</button>
                                                     </div>
                                                 </div>
                                                 <div className="col-3 pad-0">
                                                     <div className='align-center price-pad'>
-                                                        <button type="button" className='btn btn-sm btn-table btn-price align-right'>{`$${this.trimPrice(price_usd)}`}</button>
+                                                        <button type="button" className='btn btn-sm btn-table btn-price align-right'>{`$${parseFloat(Math.round(price_usd * 100) / 100).toFixed(2)}`}</button>
                                                     </div>
                                                 </div>
                                                 <div className={`col-2 pad-0 ${percent_change_24h[0] === '-' ? 'negative' : 'positive'}`}>

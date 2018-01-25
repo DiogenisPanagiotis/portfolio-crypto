@@ -609,6 +609,10 @@ a:hover {
     -moz-transform: rotate(360deg);
     -o-transform: rotate (360deg);
 }
+/*.jumbo-coin:hover {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}*/
 
 #portfolio-form {
 	margin-top: 130px;
@@ -699,4 +703,16 @@ a:hover {
 
 .holder {
 	border-radius: 12px;
+}
+
+.btn-name {
+	background-color: #eee;
+	color: #9194A0;
+	border: none;
+}
+
+.btn-name:hover {
+	background-color: #eee;
+	color: #9194A0;
+	border: none;
 }
