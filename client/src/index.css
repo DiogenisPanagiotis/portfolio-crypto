@@ -140,6 +140,26 @@ body {
     .user-side {
     	display: none;
     }
+
+    .side-nav {
+    	display: none;
+    }
+
+    .jumbo-crypto {
+    	background-color: #fff;
+    	border: solid 1px #eee;
+    }
+
+    .odd {
+    	padding-right: 6px;
+    	padding-left: 18px;
+    }
+
+    .even {
+    	padding-left: 6px;
+    	padding-right: 18px;
+    }
+
 }
 
 @media (max-width: 768px) {
@@ -239,14 +259,6 @@ th, td {
 tr:hover {
 	cursor: pointer;
 	background-color: #FAFAFA;
-}
-.price-usd {
-	/*color: #04A9F4;*/
-	/*color: #33B4F6;*/
-}
-
-.percent {
-	text-align: right;
 }
 
 .card-form {
@@ -383,13 +395,17 @@ a:hover {
     overflow: hidden;
     transition-duration: 0.8s;
     transition-property: transform;
+		border: solid 6px #eee;
+		border-radius: 25px;
 }
 .icon-lg{
     overflow: hidden;
     transition-duration: 0.8s;
     transition-property: transform;
-		height: 25px;
+		height: 90px;
+		/*margin-bottom: 10px;*/
 }
+
 .icon-lg:hover, .topcoin:hover {
     transform: rotate(360deg);
     -webkit-transform: rotate(360deg);
@@ -426,17 +442,8 @@ a:hover {
 }
 
 .jumbo-coin {
-	padding: 18px 20px;
-	margin-top: 10px;
 	background-color: #fff;
-	border-top: solid 1px #eee;
-	border-left: solid 1px #eee;
-	border-right: solid 1px #eee;
-	border-bottom: none;
-	/*border-radius: 0;*/
-	margin-top: 0px;
-
-	border: solid 1px #f6f6f6;
+	border: solid 1px #f5f5f5;
 	margin-top: 8px;
 }
 
@@ -444,8 +451,12 @@ a:hover {
 	padding: 0px!important;
 }
 
-.pad-rank {
-	padding-left: 8px;
+.pad-right-0 {
+	padding-right: 0px!important;
+}
+
+.pad-left-0 {
+	padding-left: 0px!important;
 }
 
 .align-left {
@@ -454,6 +465,10 @@ a:hover {
 
 .align-right {
 	text-align: right;
+}
+
+.h6-coin-name {
+	margin-bottom: 0px;
 }
 
 .align-center {
@@ -540,8 +555,7 @@ a:hover {
 	margin-top: 130px;
 	background-color: #fff;
 	min-width: 220px;
-	border-radius: 0.3;
-	border: solid 1px #f6f6f6;
+	border: solid 1px #f5f5f5;
 }
 
 .err-container {
@@ -564,10 +578,16 @@ a:hover {
 
 }
 
+.trending-name {
+	margin-top: 18px;
+	font-size: 0.7rem;
+	font-weight: 500;
+}
+
 .topcoin-sym {
 	/*text-align: center;*/
 	font-weight: 500;
-	padding-top: 6px;
+	padding-top: 5px;
 	font-size: 0.7rem;
 }
 
@@ -586,7 +606,6 @@ a:hover {
 }
 
 .jumbo-coin:last-child {
-	/*border-bottom: solid 1px #eee;*/
 	margin-bottom: 40px;
 }
 
@@ -602,7 +621,7 @@ a:hover {
 	padding: 1rem;
 }
 
-.jumbo-coin:hover .icon-lg {
+.jumbo-card:hover .icon-lg {
     transition: 0.8s;
     transform: rotate(360deg);
     -webkit-transform: rotate(360deg);
@@ -640,10 +659,12 @@ a:hover {
 }
 
 .negz {
+	/*width: 100%;*/
 	border: none;
 	background-color: rgb(255, 209, 209);
 	color: #FC6163;
 }
+
 .negz:hover {
 	border: none;
 	background-color: rgb(255, 209, 209);
@@ -651,6 +672,7 @@ a:hover {
 }
 
 .poz {
+	/*width: 100%;*/
 	border: none;
 	text-align: center;
 	background-color: rgb(197, 247, 219);
@@ -664,8 +686,9 @@ a:hover {
 }
 
 .btn-price {
+	/*width: 100%;*/
+	margin-right: 5px;
 	border: none;
-	text-align: center;
 	background-color: #DEF2FA;
 	color: rgb(102, 170, 255);
 }
@@ -679,21 +702,13 @@ a:hover {
 .btn-rank {
 	border: none;
 	text-align: center;
-	background-color: #f2f2f2;
-	background-color: #CBCBFD;
 	background-color: rgb(219, 219, 255);
-	color: #9194A0;
-	color: #6467F7;
 	color: rgb(113, 117, 237);
 }
 
 .btn-rank:hover {
 	border: none;
-	background-color: #f2f2f2;
-	background-color: #CBCBFD;
 	background-color: rgb(219, 219, 255);
-	color: #9194A0;
-	color: #6467F7;
 	color: rgb(113, 117, 237);
 }
 
@@ -702,7 +717,7 @@ a:hover {
 }
 
 .holder {
-	border-radius: 12px;
+	border-radius: 45px;
 }
 
 .btn-name {
@@ -716,3 +731,99 @@ a:hover {
 	color: #9194A0;
 	border: none;
 }
+
+.side-nav {
+	/*text-align: right;*/
+	background-color: #fff;
+	margin-top: 130px;
+	border: solid 1px #f6f6f6;
+}
+
+.btn-yellow {
+	background-color: #FFF0DC;
+	color: #FBB357;
+	margin-right: 5px;
+	border: none;
+	/*width: 100%*/
+}
+
+.btn-yellow:hover {
+	background-color: #FFF0DC;
+	color: #FBB357;
+	border: none;
+}
+
+.stat {
+	margin-top: 10px;
+}
+
+.total-holdings {
+	color: #aaa;
+}
+
+.relative {
+	position: relative;
+}
+
+#left {
+	position: fixed;
+	width: 400px;
+}
+
+.hr-trending {
+	width: 186px;
+}
+
+.jumbo-card:hover {
+	cursor: pointer;
+}
+.jumbo-stats {
+	background-color: #fafafa;
+	padding: 15px;
+	padding-top: 0px;
+	margin-top: 0px;
+	border: solid 1px #fafafa;
+}
+
+.container-table {
+	margin-bottom: 70px;
+}
+
+.card-name {
+	margin-top: 10px;
+	margin-bottom: 5px;
+	font-weight: 700;
+	color: #484848;
+}
+
+.card-price {
+	color: #484848;
+	color: #aaa;
+	font-size: 0.8rem;
+}
+
+.card-percent {
+	color: #484848;
+	color: #aaa;
+	font-size: 0.8rem;
+}
+
+@media (max-width: 575px) {
+	  .icon-lg {
+    	height: 60px;
+    }
+}
+
+.dollar, .percent {
+	color: #aaa;
+	font-weight: 700;
+	font-size: 0.8rem;
+}
+
+.table-header {
+	font-size: 28px;
+	font-weight: 600;
+	color: #484848;
+	text-align: left;
+}
+

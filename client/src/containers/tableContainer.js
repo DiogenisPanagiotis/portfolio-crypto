@@ -79,52 +79,189 @@ class tableContainer extends Component {
         return price
     }
 
-    renderJumbos() {
+    // renderJumbos() {
+    //     let { cryptocurrencies } = this.props.cryptoReducer
+    //     let width = window.innerWidth
+    //     if (cryptocurrencies) {    
+    //         return (
+    //             <div>
+    //                 {
+    //                     cryptocurrencies.map((cryptocurrency, i) => {
+    //                         let { name, symbol, price_usd, percent_change_24h } = cryptocurrency
+    //                         let { innerWidth } = window
+    //                         percent_change_24h = percent_change_24h === null ? '?' : percent_change_24h
+    //                         let percentString = percent_change_24h === '?' ? `${percent_change_24h}` : `${percent_change_24h}%`
+    //                         let colRank = innerWidth < 376 ? 'col-2 pad-0' : 'col-1 pad-0'
+    //                         let colName = innerWidth < 376 ? 'col-3 pad-0' : 'col-4 pad-0'
+    //                         return (
+    //                                 <div className="jumbotron jumbo-coin" onClick={() => this.rowClicked(cryptocurrency)} key={i}>
+    //                                     <div className="container">
+    //                                         <div className="row">
+    //                                             <div className={colRank}>
+    //                                                 <div className='align-left price-pad'>
+    //                                                     <button type="button" className='btn btn-sm btn-table btn-rank align-left'>{i+1}</button>
+    //                                                 </div>
+    //                                             </div>
+    //                                             <div className="col-2 pad-0">
+    //                                                 <div className={innerWidth < 376 ? 'align-left' : 'align-center'}>
+    //                                                     {this.renderIcon(symbol)}
+    //                                                 </div>
+    //                                             </div>
+    //                                             <div className={colName}>
+    //                                                 <div className='align-left'>
+    //                                                     <button type="button" className='btn btn-sm btn-table btn-name align-left'>{width <= 770 ? symbol : name.toUpperCase()}</button>
+    //                                                 </div>
+    //                                             </div>
+    //                                             <div className="col-3 pad-0">
+    //                                                 <div className='align-center price-pad'>
+    //                                                     <button type="button" className='btn btn-sm btn-table btn-price align-right'>{`$${parseFloat(Math.round(price_usd * 100) / 100).toFixed(2)}`}</button>
+    //                                                 </div>
+    //                                             </div>
+    //                                             <div className={`col-2 pad-0 ${percent_change_24h[0] === '-' ? 'negative' : 'positive'}`}>
+    //                                                 <div className='align-right percent-pad'>
+    //                                                     <button type="button" className={`btn btn-sm btn-table btn-success align-right ${percent_change_24h[0] === '-' ? 'negz' : 'poz'}`}>{percentString}</button>
+    //                                                 </div>
+    //                                             </div>
+    //                                         </div>
+    //                                     </div>
+    //                                 </div>
+    //                         )
+    //                     })
+    //                 }
+
+    //             </div>
+    //         )
+    //     }
+    // }
+
+        // renderCard() {
+        //         <div>
+        //             {
+        //                 cryptocurrencies.map((cryptocurrency, i) => {
+        //                     let { name, symbol, price_usd, percent_change_24h } = cryptocurrency
+        //                     let { innerWidth } = window
+        //                     percent_change_24h = percent_change_24h === null ? '?' : percent_change_24h
+        //                     let percentString = percent_change_24h === '?' ? `${percent_change_24h}` : `${percent_change_24h}%`
+        //                     let colRank = innerWidth < 376 ? 'col-2 pad-0' : 'col-1 pad-0'
+        //                     let colName = innerWidth < 376 ? 'col-3 pad-0' : 'col-4 pad-0'
+        //                     return (
+        //                             <div className='row'>
+        //                                 <div className="jumbotron jumbo-coin" onClick={() => this.rowClicked(cryptocurrency)} key={i}>
+        //                                     <div className="container">
+        //                                         <div className="row">
+        //                                             <div className='col'>
+        //                                                 <div className={'align-center'}>
+        //                                                     {this.renderIcon(symbol)}
+        //                                                 </div>
+        //                                             </div>
+        //                                         </div>
+        //                                     </div>
+        //                                 </div>
+        //                                 <div className='container'>
+        //                                     <div className='row'>
+
+        //                                         <div className='col'>
+
+        //                                             <div className='stat'>
+        //                                                 <h6 className='h6-coin-name align-left'>{width <= 770 ? symbol : name.toUpperCase()}</h6>
+        //                                             </div>
+
+        //                                             <div className='stat align-left'>
+        //                                                 <button type="button" className='btn btn-sm btn-table btn-yellow'>{`#${i+1}`}</button>
+        //                                             </div>
+
+        //                                             <div className='stat align-left'>
+        //                                                 <button type="button" className='btn btn-sm btn-table btn-price align-center'>{`$${parseFloat(Math.round(price_usd * 100) / 100).toFixed(2)}`}</button>
+        //                                             </div>
+
+        //                                             <div className='stat align-left'>
+        //                                                 <button type="button" className={`btn btn-sm btn-table btn-success align-center ${percent_change_24h[0] === '-' ? 'negz' : 'poz'}`}>{percentString}</button>
+        //                                             </div>
+
+        //                                         </div>
+
+        //                                     </div>
+        //                                 </div>
+
+        //                             </div> 
+        //                     )
+        //                 })
+        //             }
+
+        //         </div>
+        // }
+
+
+        renderCard(c, i) {
+            if (c) {
+
+                let percent = c[i].percent_change_24h === null ? '?' : c[i].percent_change_24h
+                let percentString = percent === '?' ? `${percent}` : ` ${percent}`
+
+                return (
+                    <div className='jumbo-card' onClick={() => this.rowClicked(c[i])}>
+
+                        <div className='jumbotron jumbo-crypto align-center'>
+                            {this.renderIcon(c[i].symbol)}
+                        </div>
+
+                        <div className='jumbotron jumbo-stats'>
+                            <div className='row'>
+                                <div className='col pad-0'>
+                                    <h6 className='card-name'>{`${c[i].name} (${c[i].symbol})`}</h6>
+                                    <div className='card-price'>
+                                        <span className='dollar'>$</span>{` ${parseFloat(Math.round(c[i].price_usd * 100) / 100).toFixed(2)}`}
+                                    </div>
+                                    <div className='card-percent'>
+                                        <span className='percent'>%</span>{percentString}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                )
+            }
+
+        }
+
+        renderCoins() {
         let { cryptocurrencies } = this.props.cryptoReducer
         let width = window.innerWidth
         if (cryptocurrencies) {    
             return (
                 <div>
+                    {/*<div className='table-header'> Cryptocurrencies </div>*/}
                     {
-                        cryptocurrencies.map((cryptocurrency, i) => {
-                            let { name, symbol, price_usd, percent_change_24h } = cryptocurrency
+                        cryptocurrencies.map((c, i) => {
+                            if (i !== 0) {
+                                i = i * 4
+                            }
+
+                            if (i > 96) {
+                                return
+                            }
+
+                            let { name, symbol, price_usd, percent_change_24h } = c
                             let { innerWidth } = window
                             percent_change_24h = percent_change_24h === null ? '?' : percent_change_24h
                             let percentString = percent_change_24h === '?' ? `${percent_change_24h}` : `${percent_change_24h}%`
-                            let colRank = innerWidth < 376 ? 'col-2 pad-0' : 'col-1 pad-0'
-                            let colName = innerWidth < 376 ? 'col-3 pad-0' : 'col-4 pad-0'
+
                             return (
-                                    <div className="jumbotron jumbo-coin" onClick={() => this.rowClicked(cryptocurrency)} key={i}>
-                                        <div className="container">
-                                            <div className="row">
-                                                <div className={colRank}>
-                                                    <div className='align-left price-pad'>
-                                                        <button type="button" className='btn btn-sm btn-table btn-rank align-left'>{i+1}</button>
-                                                    </div>
-                                                </div>
-                                                <div className="col-2 pad-0">
-                                                    <div className={innerWidth < 376 ? 'align-left' : 'align-center'}>
-                                                        {this.renderIcon(symbol)}
-                                                    </div>
-                                                </div>
-                                                <div className={colName}>
-                                                    <div className='align-left'>
-                                                        <button type="button" className='btn btn-sm btn-table btn-name align-left'>{width <= 770 ? symbol : name.toUpperCase()}</button>
-                                                    </div>
-                                                </div>
-                                                <div className="col-3 pad-0">
-                                                    <div className='align-center price-pad'>
-                                                        <button type="button" className='btn btn-sm btn-table btn-price align-right'>{`$${parseFloat(Math.round(price_usd * 100) / 100).toFixed(2)}`}</button>
-                                                    </div>
-                                                </div>
-                                                <div className={`col-2 pad-0 ${percent_change_24h[0] === '-' ? 'negative' : 'positive'}`}>
-                                                    <div className='align-right percent-pad'>
-                                                        <button type="button" className={`btn btn-sm btn-table btn-success align-right ${percent_change_24h[0] === '-' ? 'negz' : 'poz'}`}>{percentString}</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <div className='row' key={i}>
+                                        <div className='col odd'>
+                                            {this.renderCard(cryptocurrencies, i)}
+                                        </div> 
+                                        <div className='col even'>
+                                            {this.renderCard(cryptocurrencies, i+1)}
+                                        </div> 
+                                        <div className='col odd'>
+                                            {this.renderCard(cryptocurrencies, i+2)}
+                                        </div> 
+                                        <div className='col even'>
+                                            {this.renderCard(cryptocurrencies, i+3)}
+                                        </div> 
+                                    </div> 
                             )
                         })
                     }
@@ -136,11 +273,12 @@ class tableContainer extends Component {
 
     render() {
         return (
-            <div>{this.renderJumbos()}</div>
+            <div>{this.renderCoins()}</div>
         )
     }
 
 }
+
 
 function mapStateToProps(state) {
     const { userReducer, cryptoReducer, tableReducer } = state
