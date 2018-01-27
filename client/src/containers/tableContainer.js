@@ -160,7 +160,6 @@ class tableContainer extends Component {
     renderInput(c, i) {
         let { localStorage } = window
         let { handleCryptocurrencyValue } = this.props.actions
-        let cryptocurrency = JSON.parse(localStorage.rowClicked)
         let { invalid, cryptocurrencyValue } = this.props.tableReducer
 
         return (
