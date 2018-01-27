@@ -71,7 +71,7 @@ class tableContainer extends Component {
                 return <img className='icon-lg' src={svgSource}/>
             }
         }
-        return <img className='icon-lg holder' src="http://via.placeholder.com/25.png/aaa?text=."/>
+        return <img className='icon-lg holder' src={`http://via.placeholder.com/200x200.png/aaa?text=.`}/>
     }
 
     renderIconModal(symbol) {
@@ -105,7 +105,7 @@ class tableContainer extends Component {
         if (c) {
 
             let percent = c[i].percent_change_24h === null ? '?' : c[i].percent_change_24h
-            let percentString = percent === '?' ? `${percent}` : ` ${percent}`
+            let percentString = percent === '?' ? `${percent}` : `% ${percent}`
 
             return (
                 <div>
@@ -120,10 +120,10 @@ class tableContainer extends Component {
                             <div className='col pad-0'>
                                 <h6 className='card-name'>{`${c[i].name} (${c[i].symbol})`}</h6>
                                 <div className='card-price'>
-                                    <span className='dollar'>$</span>{` ${parseFloat(Math.round(c[i].price_usd * 100) / 100).toFixed(2)}`}
+                                    {`$ ${parseFloat(Math.round(c[i].price_usd * 100) / 100).toFixed(2)}`}
                                 </div>
                                 <div className='card-percent'>
-                                    <span className='percent'>%</span>{percentString}
+                                    {percentString}
                                 </div>
                             </div>
                         </div>
@@ -170,7 +170,7 @@ class tableContainer extends Component {
             <div id='crypto-input' className='container pad-0'>
                     <div className="input-group mb-3">
                         <input 
-                            autofocus
+                            autoFocus
                             type="text" 
                             className="form-control" 
                             placeholder={this.getHoldings()}
