@@ -22,17 +22,18 @@ class tableContainer extends Component {
       window.removeEventListener('resize', this.resize)
     }
 
-    getHoldings(cryptocurrency) {
+    getHoldings() {
         let { users } = this.props.userReducer
         let { localStorage } = window
         let currentUser = JSON.parse(localStorage.user).username
+        let cryptoClicked = JSON.parse(localStorage.rowClicked).symbol
         let holdings = '0.00'
         if (users) {
             users.forEach(user => {
                 if (user.username === currentUser) {
                     if (user.cryptocurrencies.length > 0) {
-                        user.cryptocurrencies.forEach((crypto, i) => {
-                            if (crypto.symbol === cryptocurrency.symbol) {
+                        user.cryptocurrencies.forEach(crypto => {
+                            if (crypto.symbol === cryptoClicked) {
                                 holdings = crypto.holdings
                             }
                         })
@@ -40,7 +41,7 @@ class tableContainer extends Component {
                 }
             })
         }
-        return `${holdings} ${cryptocurrency.symbol}`
+        return `${holdings} ${cryptoClicked}`
     }
 
     rowClicked(cryptocurrency) {
@@ -69,6 +70,23 @@ class tableContainer extends Component {
         return <img className='icon-lg holder' src="http://via.placeholder.com/25.png/aaa?text=."/>
     }
 
+    renderIconModal(symbol) {
+        let sym = symbol.toLowerCase()
+        let svg = `${sym}.svg`
+        let list = icons.icons
+
+        for (let i = 0; i < list.length; i++) {
+            let svgInList = list[i]
+            if (svg === svgInList) {
+
+                let svgSource = require(`../icons/svg/${sym}.svg`)
+
+                return <img className='icon-modal' src={svgSource}/>
+            }
+        }
+        return <img className='icon-lg holder' src="http://via.placeholder.com/25.png/aaa?text=."/>
+    }
+
     trimPrice(price) {
         if (price.indexOf('.') !== -1) {
             let p = price.split('.')
@@ -79,159 +97,225 @@ class tableContainer extends Component {
         return price
     }
 
-    // renderJumbos() {
-    //     let { cryptocurrencies } = this.props.cryptoReducer
-    //     let width = window.innerWidth
-    //     if (cryptocurrencies) {    
-    //         return (
-    //             <div>
-    //                 {
-    //                     cryptocurrencies.map((cryptocurrency, i) => {
-    //                         let { name, symbol, price_usd, percent_change_24h } = cryptocurrency
-    //                         let { innerWidth } = window
-    //                         percent_change_24h = percent_change_24h === null ? '?' : percent_change_24h
-    //                         let percentString = percent_change_24h === '?' ? `${percent_change_24h}` : `${percent_change_24h}%`
-    //                         let colRank = innerWidth < 376 ? 'col-2 pad-0' : 'col-1 pad-0'
-    //                         let colName = innerWidth < 376 ? 'col-3 pad-0' : 'col-4 pad-0'
-    //                         return (
-    //                                 <div className="jumbotron jumbo-coin" onClick={() => this.rowClicked(cryptocurrency)} key={i}>
-    //                                     <div className="container">
-    //                                         <div className="row">
-    //                                             <div className={colRank}>
-    //                                                 <div className='align-left price-pad'>
-    //                                                     <button type="button" className='btn btn-sm btn-table btn-rank align-left'>{i+1}</button>
-    //                                                 </div>
-    //                                             </div>
-    //                                             <div className="col-2 pad-0">
-    //                                                 <div className={innerWidth < 376 ? 'align-left' : 'align-center'}>
-    //                                                     {this.renderIcon(symbol)}
-    //                                                 </div>
-    //                                             </div>
-    //                                             <div className={colName}>
-    //                                                 <div className='align-left'>
-    //                                                     <button type="button" className='btn btn-sm btn-table btn-name align-left'>{width <= 770 ? symbol : name.toUpperCase()}</button>
-    //                                                 </div>
-    //                                             </div>
-    //                                             <div className="col-3 pad-0">
-    //                                                 <div className='align-center price-pad'>
-    //                                                     <button type="button" className='btn btn-sm btn-table btn-price align-right'>{`$${parseFloat(Math.round(price_usd * 100) / 100).toFixed(2)}`}</button>
-    //                                                 </div>
-    //                                             </div>
-    //                                             <div className={`col-2 pad-0 ${percent_change_24h[0] === '-' ? 'negative' : 'positive'}`}>
-    //                                                 <div className='align-right percent-pad'>
-    //                                                     <button type="button" className={`btn btn-sm btn-table btn-success align-right ${percent_change_24h[0] === '-' ? 'negz' : 'poz'}`}>{percentString}</button>
-    //                                                 </div>
-    //                                             </div>
-    //                                         </div>
-    //                                     </div>
-    //                                 </div>
-    //                         )
-    //                     })
-    //                 }
+    renderCard(c, i) {
+        if (c) {
 
-    //             </div>
-    //         )
-    //     }
-    // }
+            let percent = c[i].percent_change_24h === null ? '?' : c[i].percent_change_24h
+            let percentString = percent === '?' ? `${percent}` : ` ${percent}`
 
-        // renderCard() {
-        //         <div>
-        //             {
-        //                 cryptocurrencies.map((cryptocurrency, i) => {
-        //                     let { name, symbol, price_usd, percent_change_24h } = cryptocurrency
-        //                     let { innerWidth } = window
-        //                     percent_change_24h = percent_change_24h === null ? '?' : percent_change_24h
-        //                     let percentString = percent_change_24h === '?' ? `${percent_change_24h}` : `${percent_change_24h}%`
-        //                     let colRank = innerWidth < 376 ? 'col-2 pad-0' : 'col-1 pad-0'
-        //                     let colName = innerWidth < 376 ? 'col-3 pad-0' : 'col-4 pad-0'
-        //                     return (
-        //                             <div className='row'>
-        //                                 <div className="jumbotron jumbo-coin" onClick={() => this.rowClicked(cryptocurrency)} key={i}>
-        //                                     <div className="container">
-        //                                         <div className="row">
-        //                                             <div className='col'>
-        //                                                 <div className={'align-center'}>
-        //                                                     {this.renderIcon(symbol)}
-        //                                                 </div>
-        //                                             </div>
-        //                                         </div>
-        //                                     </div>
-        //                                 </div>
-        //                                 <div className='container'>
-        //                                     <div className='row'>
+            return (
+                <div>
+                <div className='jumbo-card' data-toggle="modal" data-target={`#modal-${i}`}>
 
-        //                                         <div className='col'>
+                    <div className='jumbotron jumbo-crypto align-center'>
+                        {this.renderIcon(c[i].symbol)}
+                    </div>
 
-        //                                             <div className='stat'>
-        //                                                 <h6 className='h6-coin-name align-left'>{width <= 770 ? symbol : name.toUpperCase()}</h6>
-        //                                             </div>
-
-        //                                             <div className='stat align-left'>
-        //                                                 <button type="button" className='btn btn-sm btn-table btn-yellow'>{`#${i+1}`}</button>
-        //                                             </div>
-
-        //                                             <div className='stat align-left'>
-        //                                                 <button type="button" className='btn btn-sm btn-table btn-price align-center'>{`$${parseFloat(Math.round(price_usd * 100) / 100).toFixed(2)}`}</button>
-        //                                             </div>
-
-        //                                             <div className='stat align-left'>
-        //                                                 <button type="button" className={`btn btn-sm btn-table btn-success align-center ${percent_change_24h[0] === '-' ? 'negz' : 'poz'}`}>{percentString}</button>
-        //                                             </div>
-
-        //                                         </div>
-
-        //                                     </div>
-        //                                 </div>
-
-        //                             </div> 
-        //                     )
-        //                 })
-        //             }
-
-        //         </div>
-        // }
-
-
-        renderCard(c, i) {
-            if (c) {
-
-                let percent = c[i].percent_change_24h === null ? '?' : c[i].percent_change_24h
-                let percentString = percent === '?' ? `${percent}` : ` ${percent}`
-
-                return (
-                    <div className='jumbo-card' onClick={() => this.rowClicked(c[i])}>
-
-                        <div className='jumbotron jumbo-crypto align-center'>
-                            {this.renderIcon(c[i].symbol)}
+                    <div className='jumbotron jumbo-stats'>
+                        <div className='row'>
+                            <div className='col pad-0'>
+                                <h6 className='card-name'>{`${c[i].name} (${c[i].symbol})`}</h6>
+                                <div className='card-price'>
+                                    <span className='dollar'>$</span>{` ${parseFloat(Math.round(c[i].price_usd * 100) / 100).toFixed(2)}`}
+                                </div>
+                                <div className='card-percent'>
+                                    <span className='percent'>%</span>{percentString}
+                                </div>
+                            </div>
                         </div>
+                    </div>
+                </div>
+                    {this.renderModal(c, i)}
+                </div>
+            )
+        }
 
-                        <div className='jumbotron jumbo-stats'>
-                            <div className='row'>
-                                <div className='col pad-0'>
-                                    <h6 className='card-name'>{`${c[i].name} (${c[i].symbol})`}</h6>
-                                    <div className='card-price'>
-                                        <span className='dollar'>$</span>{` ${parseFloat(Math.round(c[i].price_usd * 100) / 100).toFixed(2)}`}
+    }
+
+    updateUser() {
+        let { localStorage } = window
+        let id = JSON.parse(localStorage.user)._id
+        let rowClicked = JSON.parse(localStorage.rowClicked)
+        let { tableReducer } = this.props
+        let { updateUser, getUsers, toggleInvalidValue, handleCryptocurrencyValue } = this.props.actions
+        if (tableReducer.cryptocurrencyValue.length === 0 || isNaN(Number(tableReducer.cryptocurrencyValue))) {
+            toggleInvalidValue(true)
+            return
+        } else {
+            console.log('dkfjsdk')
+            updateUser({
+                _id: id,
+                name: rowClicked.name || tableReducer.cryptocurrency.name, 
+                symbol: rowClicked.symbol || tableReducer.cryptocurrency.symbol,
+                holdings: tableReducer.cryptocurrencyValue
+            }).then(() => {
+                getUsers().then(() => {
+                    handleCryptocurrencyValue('')
+                })
+            })
+        }
+        toggleInvalidValue(false)
+    }
+
+    renderInput(c, i) {
+        let { localStorage } = window
+        let { handleCryptocurrencyValue } = this.props.actions
+        let cryptocurrency = JSON.parse(localStorage.rowClicked)
+        let { invalid, cryptocurrencyValue } = this.props.tableReducer
+
+        return (
+            <div id='crypto-input' className='container pad-0'>
+                    <div className="input-group mb-3">
+                        <input 
+                            autofocus
+                            type="text" 
+                            className="form-control" 
+                            placeholder={this.getHoldings()}
+                            onChange = {({target}) => handleCryptocurrencyValue(target.value)}
+                            value={cryptocurrencyValue}
+                            />
+                    </div>
+
+                    <button 
+                        onClick={() => this.updateUser()}
+                        type="button" 
+                        className="btn btn-primary btn-sm btn-block">
+                        Submit
+                    </button>
+                    { invalid ? <small id='invalid-crypto-value' className="form-text text-muted">Invalid value.</small> : ''}
+
+            </div>     
+        )
+    }
+
+    abbreviateNumber(value) {
+
+        let suffixes = ["", "K", "M", "B","T"];
+        let suffixNum = Math.floor((""+value).length/3);
+        let shortValue = parseFloat((suffixNum != 0 ? (value / Math.pow(1000,suffixNum)) : value).toPrecision(2));
+        if (shortValue % 1 != 0) {
+            var shortNum = shortValue.toFixed(1)
+        }
+        return shortValue + suffixes[suffixNum]
+
+    }
+
+    renderModal(c, i) {
+        let percent = c[i].percent_change_24h === null ? '?' : c[i].percent_change_24h
+        let percentString = percent === '?' ? `${percent}` : ` ${percent}`
+        let marketCap = this.abbreviateNumber(Number(c[i].market_cap_usd))
+        return (
+            <div className="modal" id={`modal-${i}`} tabIndex="-1" role="dialog" aria-hidden="true">
+                <div className="modal-dialog modal-lg" role="document">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <div className="container-fluid">
+                                <div className="row">
+                                    <div className="col">
+                                        <h4 className='modal-title'></h4>
                                     </div>
-                                    <div className='card-percent'>
-                                        <span className='percent'>%</span>{percentString}
+                                    <div className="col">
+                                        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
+                    <div className="modal-body">
+                        <div className="container-fluid">
+                            <div className="row">
+                                <div className="col-lg-1"></div>
+                                <div className="col-lg-10">
+                                    <div className='align-center'>
+                                        <div className="col pad-0">
+                                            <h4 className='modal-title'> {`${c[i].name} (${c[i].symbol})`} </h4>
+                                        </div>
+                                        <div className='jumbotron jumbo-modal-icon'>
+                                            {this.renderIconModal(c[i].symbol)}
+                                        </div>
+                                    <div className='jumbotron jumbo-modal-stats'>
+                                        <ul className="list-group list-group-flush">
+                                            <li className="list-group-item">
+                                                <div className='row'>
+                                                    <div className='col'>
+                                                        <div className='align-left'>
+                                                            <span className='align-left'>Rank</span>
+                                                        </div>
+                                                    </div>
+                                                    <div className='col'>
+                                                        <div className='align-right'>
+                                                            <span className='align-right'>{`#${i + 1}`}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li className="list-group-item">
+                                                <div className='row'>
+                                                    <div className='col'>
+                                                        <div className='align-left'>
+                                                            <span className='align-left'>Price</span>
+                                                        </div>
+                                                    </div>
+                                                    <div className='col'>
+                                                        <div className='align-right'>
+                                                            <span className='align-right'>{`$${parseFloat(Math.round(c[i].price_usd * 100) / 100).toFixed(2)}`}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li className="list-group-item">
+                                                <div className='row'>
+                                                    <div className='col'>
+                                                        <div className='align-left'>
+                                                            <span className='align-left'>% Change 24h</span>
+                                                        </div>
+                                                    </div>
+                                                    <div className='col'>
+                                                        <div className='align-right'>
+                                                            <span className='align-right'>{`${percentString}%`}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li className="list-group-item">
+                                                <div className='row'>
+                                                    <div className='col'>
+                                                        <div className='align-left'>
+                                                            <span className='align-left'>Market Cap</span>
+                                                        </div>
+                                                    </div>
+                                                    <div className='col'>
+                                                        <div className='align-right'>
+                                                            <span className='align-right'>{marketCap}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                        <div className='jumbotron'>
+                                            {this.renderInput()}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col-lg-1"></div>
+                            </div>
+                        </div>
                     </div>
-                )
-            }
+                <div className='modal-footer'></div>
+                </div>
+              </div>
+            </div>
+        )
+    }
 
-        }
-
-        renderCoins() {
+    renderCoins() {
         let { cryptocurrencies } = this.props.cryptoReducer
         let width = window.innerWidth
         if (cryptocurrencies) {    
             return (
                 <div>
-                    {/*<div className='table-header'> Cryptocurrencies </div>*/}
                     {
                         cryptocurrencies.map((c, i) => {
                             if (i !== 0) {
@@ -273,7 +357,9 @@ class tableContainer extends Component {
 
     render() {
         return (
-            <div>{this.renderCoins()}</div>
+            <div>
+                {this.renderCoins()}
+            </div>
         )
     }
 
