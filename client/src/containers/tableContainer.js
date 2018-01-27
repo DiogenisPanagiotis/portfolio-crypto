@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux'
 import actions from '../actions/actions'
 import { withRouter } from 'react-router-dom'
 import icons from '../icons/icons'
+var $ = window.jQuery
 
 class tableContainer extends Component {
 
@@ -26,31 +27,34 @@ class tableContainer extends Component {
         let { users } = this.props.userReducer
         let { localStorage } = window
         let currentUser = JSON.parse(localStorage.user).username
-        let cryptoClicked = JSON.parse(localStorage.rowClicked).symbol
         let holdings = '0.00'
-        if (users) {
-            users.forEach(user => {
-                if (user.username === currentUser) {
-                    if (user.cryptocurrencies.length > 0) {
-                        user.cryptocurrencies.forEach(crypto => {
-                            if (crypto.symbol === cryptoClicked) {
-                                holdings = crypto.holdings
-                            }
-                        })
+        if (Object.keys(localStorage).length > 1) {    
+            let cryptoClicked = JSON.parse(localStorage.rowClicked).symbol
+            if (users) {
+                users.forEach(user => {
+                    if (user.username === currentUser) {
+                        if (user.cryptocurrencies.length > 0) {
+                            user.cryptocurrencies.forEach(crypto => {
+                                if (crypto.symbol === cryptoClicked) {
+                                    holdings = crypto.holdings
+                                }
+                            })
+                        }
                     }
-                }
-            })
+                })
+            }
+            return `${holdings} ${cryptoClicked}`
         }
-        return `${holdings} ${cryptoClicked}`
     }
 
-    rowClicked(cryptocurrency) {
+    rowClicked(cryptocurrency, i) {
         let { handleRowClick } = this.props.actions
         let { localStorage } = window
         let userCookie = JSON.stringify(cryptocurrency)
         localStorage.setItem('rowClicked', userCookie)
         handleRowClick(cryptocurrency)
-        this.props.history.push('/form')
+        // this.props.history.push('/form')
+        $(`#modal-${i}`).modal('show')
     }
 
     renderIcon(symbol) {
@@ -105,7 +109,7 @@ class tableContainer extends Component {
 
             return (
                 <div>
-                <div className='jumbo-card' data-toggle="modal" data-target={`#modal-${i}`}>
+                <div className='jumbo-card' onClick={() => this.rowClicked(c[i], i)}>
 
                     <div className='jumbotron jumbo-crypto align-center'>
                         {this.renderIcon(c[i].symbol)}
