@@ -170,7 +170,6 @@ class tableContainer extends Component {
             <div id='crypto-input' className='container pad-0'>
                     <div className="input-group mb-3">
                         <input 
-                            autoFocus
                             type="text" 
                             className="form-control" 
                             placeholder={this.getHoldings()}
@@ -233,6 +232,7 @@ class tableContainer extends Component {
                                     <div className='align-center'>
                                         <div className="col pad-0">
                                             <h4 className='modal-title'> {`${c[i].name} (${c[i].symbol})`} </h4>
+                                            <h4 className='modal-holdings'>{`${this.getHoldings()}`}</h4>
                                         </div>
                                         <div className='jumbotron jumbo-modal-icon'>
                                             {this.renderIconModal(c[i].symbol)}
@@ -297,7 +297,7 @@ class tableContainer extends Component {
                                             </li>
                                         </ul>
                                     </div>
-                                        <div className='jumbotron'>
+                                        <div className=''>
                                             {this.renderInput()}
                                         </div>
                                     </div>

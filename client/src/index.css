@@ -274,7 +274,7 @@ tr:hover {
 }
 
 #crypto-input {
-	/*margin-top: 12px;*/
+	margin-top: 30px;
 }
 
 #invalid-crypto-value {
@@ -407,9 +407,9 @@ a:hover {
 }
 
 .icon-form {
-    overflow: hidden;
-    transition-duration: 0.8s;
-    transition-property: transform;
+  overflow: hidden;
+  transition-duration: 0.8s;
+  transition-property: transform;
 	height: 70px;
 	width: 70px;
 	margin-bottom: 20px;
@@ -861,8 +861,16 @@ a:hover {
 
 .modal-title {
 	color: #484848;
-	text-align: left;
-	font-size: 32px;
+	text-align: center;
+	font-size: 40px;
+	font-weight: 700;
+}
+
+.modal-holdings {
+	color: #aaa;
+	text-align: center;
+	font-size: 30px;
+	font-weight: 700;
 }
 
 .icon-modal {
@@ -870,10 +878,12 @@ a:hover {
     transition-duration: 0.8s;
     transition-property: transform;
 		height: 200px;
+		border: solid 20px #fff;
+		border-radius: 100px;
 }
 
 .modal-header, .modal-body, .modal-footer {
-	padding: 32px;
+	padding: 40px;
 }
 
 .list-group-item {
@@ -891,6 +901,10 @@ a:hover {
 }
 
 .jumbo-modal-icon {
+	background-color: #f4f4f4;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	border: none;
 	border-radius: 10px;
 }
 
