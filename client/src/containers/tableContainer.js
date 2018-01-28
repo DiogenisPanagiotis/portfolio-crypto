@@ -168,6 +168,7 @@ class tableContainer extends Component {
 
         return (
             <div id='crypto-input' className='container pad-0'>
+                    <h5 className='input-header'> Your Holdings </h5>
                     <div className="input-group mb-3">
                         <input 
                             type="text" 
@@ -181,7 +182,7 @@ class tableContainer extends Component {
                     <button 
                         onClick={() => this.updateUser()}
                         type="button" 
-                        className="btn btn-primary btn-sm btn-block">
+                        className="btn btn-primary btn-md btn-block">
                         Submit
                     </button>
                     { invalid ? <small id='invalid-crypto-value' className="form-text text-muted">Invalid value.</small> : ''}

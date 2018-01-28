@@ -795,12 +795,14 @@ a:hover {
 	color: #484848;
 	color: #aaa;
 	font-size: 0.8rem;
+	font-weight: 600;
 }
 
 .card-percent {
 	color: #484848;
 	color: #aaa;
 	font-size: 0.8rem;
+	font-weight: 600;
 }
 
 @media (max-width: 575px) {
@@ -869,7 +871,7 @@ a:hover {
 .modal-holdings {
 	color: #aaa;
 	text-align: center;
-	font-size: 30px;
+	font-size: 26px;
 	font-weight: 700;
 }
 
@@ -912,5 +914,10 @@ a:hover {
 	margin-top: 20px;
 }
 
+.input-header {
+	font-weight: 700;
+	color: #484848;
+	text-align: left;
+}
 
 
