@@ -782,6 +782,7 @@ a:hover {
 .jumbo-trending {
 	padding: 20px;
 	margin-top: 20px;
+	position: relative;
 }
 
 .container-table {
@@ -952,4 +953,14 @@ a:hover {
 	margin-left: 0px;
 }
 
+.lightning {
+	position: absolute;
+	top: 0;
+	left: 0;
+	padding-left: 12px;
+	padding-top: 8px;
+	color: #aaa;
+	color: #008489;
+	color: #3cd483;
+}
 

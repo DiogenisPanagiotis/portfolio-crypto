@@ -61,6 +61,7 @@ class dashboardContainer extends Component {
 
                             <div className='jumbotron jumbo-trending align-center'>
                                 <img className={classNameTrending} src={svgSource}/>
+                                <div className='lightning'><i className="fa fa-bolt"></i></div>
                             </div>
 
                             <div className='jumbotron jumbo-stats'>
