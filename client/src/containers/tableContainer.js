@@ -88,7 +88,7 @@ class tableContainer extends Component {
                 return <img className='icon-modal' src={svgSource}/>
             }
         }
-        return <img className='icon-lg holder' src="http://via.placeholder.com/25.png/aaa?text=."/>
+        return <img className='icon-modal holder' src="http://via.placeholder.com/25.png/aaa?text=."/>
     }
 
     trimPrice(price) {
@@ -320,6 +320,7 @@ class tableContainer extends Component {
         if (cryptocurrencies) {    
             return (
                 <div>
+                    <h3 className='trending-header'> Cryptocurrencies </h3>
                     {
                         cryptocurrencies.map((c, i) => {
                             if (i !== 0) {

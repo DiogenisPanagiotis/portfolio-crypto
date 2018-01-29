@@ -152,12 +152,39 @@ body {
 
     .odd {
     	padding-right: 6px;
-    	padding-left: 18px;
+    	padding-left: 24px;
     }
 
     .even {
     	padding-left: 6px;
-    	padding-right: 18px;
+    	padding-right: 24px;
+    }
+
+    .trend-1 {
+    	padding-right: 6px;
+    	padding-left: 24px;
+    }
+    .trend-2 {
+    	padding-left: 6px;
+    	padding-right: 6px;
+    }
+    .trend-3 {
+    	padding-left: 6px;
+    	padding-right: 6px;
+    }
+
+    .card-name {
+    	font-size: 15px;
+    }
+
+    .jumbo-trending {
+    	background-color: #fff;
+    	border: solid 1px #eee;
+    }
+
+    .trending-header {
+    	font-size: 24px;
+    	margin-left: 10px;
     }
 
 }
@@ -330,19 +357,11 @@ a:hover {
 	color: rgba(0,0,0,.5)!important;
 }
 
-/*.icon {
-	height: 20px;
-	width: 20px;
-}*/
-
 .secondary {
 	margin-top: 57px;
 	text-align: center;
 	padding: 0px;
-/*
-	display: inline-block;
-  	float: none;
-  	vertical-align: top;*/
+
 }
 
 .secondary-text {
@@ -352,7 +371,6 @@ a:hover {
 }
 
 #secondary-container {
-	/*display: inline-block!important;*/
 	margin-top: 70px;
 }
 
@@ -361,7 +379,6 @@ a:hover {
 }
 
 #sec-jumbo {
-	/*padding: 0px 65px;*/
 	margin: 0px;
 	border: 0px;
 }
@@ -398,10 +415,9 @@ a:hover {
     transition-duration: 0.8s;
     transition-property: transform;
 		height: 90px;
-		/*margin-bottom: 10px;*/
 }
 
-.icon-lg:hover, .topcoin:hover, .icon-modal:hover {
+.icon-lg:hover, .topcoin:hover, .icon-modal:hover, .trending-icon:hover {
     transform: rotate(360deg);
     -webkit-transform: rotate(360deg);
 }
@@ -414,6 +430,7 @@ a:hover {
 	width: 70px;
 	margin-bottom: 20px;
 }
+
 .icon-form:hover {
     transform: rotate(360deg);
     -webkit-transform: rotate(360deg);
@@ -430,10 +447,6 @@ a:hover {
 	padding-top: 5px;
 	text-align: center;
 	color: #9194A0;
-}
-
-.coin-name {
-	/*padding-left: 20px;*/
 }
 
 .jumbo-coin {
@@ -623,20 +636,10 @@ a:hover {
     -moz-transform: rotate(360deg);
     -o-transform: rotate (360deg);
 }
-/*.jumbo-coin:hover {
-	padding-top: 10px;
-	padding-bottom: 10px;
-}*/
 
 #portfolio-form {
 	margin-top: 130px;
 }
-
-
-
-
-
-
 
 .btn-table {
 	font-size: 0.7rem;
@@ -654,7 +657,6 @@ a:hover {
 }
 
 .negz {
-	/*width: 100%;*/
 	border: none;
 	background-color: rgb(255, 209, 209);
 	color: #FC6163;
@@ -667,7 +669,6 @@ a:hover {
 }
 
 .poz {
-	/*width: 100%;*/
 	border: none;
 	text-align: center;
 	background-color: rgb(197, 247, 219);
@@ -681,7 +682,6 @@ a:hover {
 }
 
 .btn-price {
-	/*width: 100%;*/
 	margin-right: 5px;
 	border: none;
 	background-color: #DEF2FA;
@@ -728,7 +728,6 @@ a:hover {
 }
 
 .side-nav {
-	/*text-align: right;*/
 	background-color: #fff;
 	margin-top: 130px;
 	border: solid 1px #f6f6f6;
@@ -739,7 +738,6 @@ a:hover {
 	color: #FBB357;
 	margin-right: 5px;
 	border: none;
-	/*width: 100%*/
 }
 
 .btn-yellow:hover {
@@ -776,8 +774,14 @@ a:hover {
 	background-color: #fafafa;
 	padding: 15px;
 	padding-top: 0px;
+	padding-bottom: 0px;
 	margin-top: 0px;
 	border: solid 1px #fafafa;
+}
+
+.jumbo-trending {
+	padding: 20px;
+	margin-top: 20px;
 }
 
 .container-table {
@@ -785,7 +789,7 @@ a:hover {
 }
 
 .card-name {
-	margin-top: 10px;
+	margin-top: 8px;
 	margin-bottom: 5px;
 	font-weight: 700;
 	color: #484848;
@@ -918,6 +922,34 @@ a:hover {
 	font-weight: 700;
 	color: #484848;
 	text-align: left;
+}
+
+.trending-margin-top {
+	margin-top: 20px;
+}
+
+.trending-icon {
+	height: 55px;
+  overflow: hidden;
+  transition-duration: 0.8s;
+  transition-property: transform;
+}
+
+.trending-icon:hover {
+		cursor: pointer;
+    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+}
+
+.trending-header {
+	color: #484848;
+	font-weight: 700;
+	font-size: 28px;
+	margin-top: 40px;
+}
+
+.m-left-0 {
+	margin-left: 0px;
 }
 
 

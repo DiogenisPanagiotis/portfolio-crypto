@@ -7,6 +7,7 @@ import NavContainer from './navContainer'
 import SecondaryNav from './secondaryNav'
 import TableContainer from './tableContainer'
 import icons from '../icons/icons'
+var $ = window.jQuery
 
 class dashboardContainer extends Component {
     componentDidMount() {
@@ -27,10 +28,81 @@ class dashboardContainer extends Component {
         document.body.style.backgroundColor = null
     }
 
+    rowClicked(cryptocurrency, i) {
+        let { handleRowClick } = this.props.actions
+        let { localStorage } = window
+        let userCookie = JSON.stringify(cryptocurrency)
+        localStorage.setItem('rowClicked', userCookie)
+        handleRowClick(cryptocurrency)
+        // this.props.history.push('/form')
+        $(`#modal-${i}`).modal('show')
+    }
+
+    renderTrendingIcon(c, i) {
+        let { cryptocurrencies } = this.props.cryptoReducer
+
+        if (c) {
+
+            let modalIndex = cryptocurrencies.findIndex(crypto => crypto.symbol === c[i].symbol)
+            let sym = c[i].symbol.toLowerCase()
+            let svg = `${sym}.svg`
+            let list = icons.icons
+
+            let percent = c[i].percent_change_1h === null ? '?' : c[i].percent_change_1h
+            let percentString = percent === '?' ? `${percent}` : `% ${percent}`
+
+            for (let x = 0; x < list.length; x++) {
+                let svgInList = list[x]
+                if (svg === svgInList) {
+                    let svgSource = require(`../icons/svg/${sym}.svg`)
+                    let classNameTrending = i === 0 ? 'trending-icon m-left-0' : 'trending-icon'
+                    return (
+                        <div className='jumbo-card' onClick={() => this.rowClicked(c[i], modalIndex)}>
+
+                            <div className='jumbotron jumbo-trending align-center'>
+                                <img className={classNameTrending} src={svgSource}/>
+                            </div>
+
+                            <div className='jumbotron jumbo-stats'>
+                                <div className='row'>
+                                    <div className='col pad-0'>
+                                        <h6 className='card-name'>{c[i] ? `${c[i].name} (${c[i].symbol})` : ''}</h6>
+                                        <div className='card-percent'>
+                                            {percentString}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    )
+                }
+            }
+
+            return (
+                <div className='jumbo-card' onClick={() => this.rowClicked(c[i], modalIndex)}>
+                    <div className='jumbotron jumbo-trending align-center'>
+                        <img className='trending-icon holder' src="http://via.placeholder.com/25.png/aaa?text=."/>
+                    </div>
+                    <div className='jumbotron jumbo-stats'>
+                        <div className='row'>
+                            <div className='col pad-0'>
+                                <h6 className='card-name'>{c[i] ? `${c[i].symbol} (${c[i].symbol})` : ''}</h6>
+                                <div className='card-percent'>
+                                    {percentString}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )
+        }
+    }
+
     renderTrending() {
         let { cryptocurrencies } = this.props.cryptoReducer
         let { localStorage } = window
         let sorted = []
+
         if (cryptocurrencies) {
 
             let coins = cryptocurrencies.slice()
@@ -45,31 +117,31 @@ class dashboardContainer extends Component {
 
             return (
                     <div>
-                        {trending.map((c, i) => {
-                            if (i > 4) {
+                        <h3 className='trending-header'> Trending </h3>
+                        {[0].map((c, i) => {
+
+                            if (i === 1) {
                                 return
                             }
+
                             return (
-                            <div className='container container-fluid' key={i}>
-                                <div className='row'>
-                                    <div className='col pad-0'>
-                                        <div className='trending-name align-center'>{c.name.toUpperCase()}</div>
+                                <div className='row' key={i}>
+                                    <div className='col odd'>
+                                        {trending ? this.renderTrendingIcon(trending, i) : ''}
+                                    </div>
+                                    <div className='col even'>
+                                        {trending ? this.renderTrendingIcon(trending, i+1) : ''}
+                                    </div>
+                                    <div className='col odd'>
+                                        {trending ? this.renderTrendingIcon(trending, i+2) : ''}
+                                    </div>
+                                    <div className='col even'>
+                                        {trending ? this.renderTrendingIcon(trending, i+3) : ''}
                                     </div>
                                 </div>
-                                <div className='row'>
-                                    <div className='col pad-0'>
-                                        <div className='stat'>
-                                            <button 
-                                                type="button" 
-                                                className='btn btn-sm btn-table btn-success align-center poz'
-                                                >
-                                                {`${c.percent_change_1h} %`}
-                                                </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+
                             )
+
                         })}
                     </div>
             )
@@ -171,6 +243,7 @@ class dashboardContainer extends Component {
                         {<div className='col-md-1'></div>}
                         <div className='col-md-10'>
                             <div className='margin-top'></div>
+                                {this.renderTrending()}
                                 <TableContainer/>
                             </div>
                         {<div className='col-md-1'></div>}
