@@ -12,11 +12,45 @@ var $ = window.jQuery
 class dashboardContainer extends Component {
     componentDidMount() {
         let { getUsers, getCryptos } = this.props.actions
+        let { localStorage } = window
+        let currentUser = JSON.parse(localStorage.user).username
+
         if (!window.localStorage.user) {
             this.props.history.push('/')
         }
+
+        let used = []
+
+        let holdings = 0
+
         getCryptos(0, 100).then(() => {
-            getUsers()
+            getUsers().then(() => {
+                let { users } = this.props.userReducer
+                let { cryptocurrencies } = this.props.cryptoReducer
+
+                users.forEach(user => {
+                    if (user.username === currentUser) {
+                        if (user.cryptocurrencies.length > 0) {
+                            user.cryptocurrencies.forEach((crypto, i) => {
+                                if (!used.includes(crypto.symbol)) {
+                                    let priceUsd
+                                    if (cryptocurrencies) {                      
+                                        cryptocurrencies.forEach((c, i) => {
+                                            if (c.symbol === crypto.symbol) {
+                                                priceUsd = c.price_usd
+                                            }
+                                        })
+                                        holdings += Number(crypto.holdings) * Number(priceUsd)
+                                        used.push(crypto.symbol)
+                                    }
+                                }
+                            })
+                        }
+                    }
+                })
+
+                localStorage.setItem('holdings', JSON.stringify(holdings))
+            })
         })
     }
 
@@ -38,11 +72,11 @@ class dashboardContainer extends Component {
         $(`#modal-${i}`).modal('show')
     }
 
-    renderTrendingIcon(c, i) {
+    renderTrendingIcon(c, i, category) {
         let { cryptocurrencies } = this.props.cryptoReducer
 
         if (c) {
-
+            console.log(c)
             let modalIndex = cryptocurrencies.findIndex(crypto => crypto.symbol === c[i].symbol)
             let sym = c[i].symbol.toLowerCase()
             let svg = `${sym}.svg`
@@ -50,6 +84,8 @@ class dashboardContainer extends Component {
 
             let percent = c[i].percent_change_1h === null ? '?' : c[i].percent_change_1h
             let percentString = percent === '?' ? `${percent}` : `% ${percent}`
+            let faClass = category === 'Gainers' ? 'lightning' : 'arrow-down'
+            let faIcon = category === 'Gainers' ? 'fa fa-bolt' : 'fas fa-arrow-down'
 
             for (let x = 0; x < list.length; x++) {
                 let svgInList = list[x]
@@ -61,7 +97,7 @@ class dashboardContainer extends Component {
 
                             <div className='jumbotron jumbo-trending align-center'>
                                 <img className={classNameTrending} src={svgSource}/>
-                                <div className='lightning'><i className="fa fa-bolt"></i></div>
+                                <div className={faClass}><i className={faIcon}></i></div>
                             </div>
 
                             <div className='jumbotron jumbo-stats'>
@@ -82,8 +118,9 @@ class dashboardContainer extends Component {
             return (
                 <div className='jumbo-card' onClick={() => this.rowClicked(c[i], modalIndex)}>
                     <div className='jumbotron jumbo-trending align-center'>
-                        <img className='trending-icon holder' src="http://via.placeholder.com/25.png/aaa?text=."/>
-                        <div className='lightning'><i className="fa fa-bolt"></i></div>
+                        {/*<img className='trending-icon holder' src="http://via.placeholder.com/25.png/aaa?text=."/>*/}
+                        <i className='fas fa-6x fa-question-circle trending-icon'></i>
+                        <div className={faClass}><i className={faIcon}></i></div>
                     </div>
                     <div className='jumbotron jumbo-stats'>
                         <div className='row'>
@@ -100,7 +137,7 @@ class dashboardContainer extends Component {
         }
     }
 
-    renderTrending() {
+    renderTrending(category) {
         let { cryptocurrencies } = this.props.cryptoReducer
         let { localStorage } = window
         let sorted = []
@@ -110,8 +147,8 @@ class dashboardContainer extends Component {
             let coins = cryptocurrencies.slice()
 
             let trending = coins.sort((a, b) => {
-                let keyA = a.percent_change_1h
-                let keyB = b.percent_change_1h
+                let keyA = Number(a.percent_change_1h)
+                let keyB = Number(b.percent_change_1h)
                 if(keyA < keyB) return -1
                 if(keyA > keyB) return 1
                 return 0
@@ -119,26 +156,34 @@ class dashboardContainer extends Component {
 
             return (
                     <div>
-                        <h3 className='trending-header'> Trending </h3>
+                        <h3 className='trending-header'> {category} </h3>
                         {[0].map((c, i) => {
 
                             if (i === 1) {
                                 return
                             }
 
+                            if (category === 'Gainers') {
+                                i = 0
+                            } 
+
+                            if (category === 'Losers') {
+                                i = 96
+                            }
+
                             return (
                                 <div className='row' key={i}>
                                     <div className='col odd'>
-                                        {trending ? this.renderTrendingIcon(trending, i) : ''}
+                                        {trending ? this.renderTrendingIcon(trending, i, category) : ''}
                                     </div>
                                     <div className='col even'>
-                                        {trending ? this.renderTrendingIcon(trending, i+1) : ''}
+                                        {trending ? this.renderTrendingIcon(trending, i+1, category) : ''}
                                     </div>
                                     <div className='col odd'>
-                                        {trending ? this.renderTrendingIcon(trending, i+2) : ''}
+                                        {trending ? this.renderTrendingIcon(trending, i+2, category) : ''}
                                     </div>
                                     <div className='col even'>
-                                        {trending ? this.renderTrendingIcon(trending, i+3) : ''}
+                                        {trending ? this.renderTrendingIcon(trending, i+3, category) : ''}
                                     </div>
                                 </div>
 
@@ -198,39 +243,12 @@ class dashboardContainer extends Component {
     }
 
     renderTotalHoldings() {
-        let { getCryptos } = this.props.actions
-        let { users } = this.props.userReducer
-        let { localStorage } = window
-        let currentUser = JSON.parse(localStorage.user).username
         let holdings = 0
-        let used = []
-
-        let { cryptocurrencies } = this.props.cryptoReducer
-
-        if (users) {
-            users.forEach(user => {
-                if (user.username === currentUser) {
-                    if (user.cryptocurrencies.length > 0) {
-                        user.cryptocurrencies.forEach((crypto, i) => {
-                            if (!used.includes(crypto.symbol)) {
-                                let priceUsd
-                                if (cryptocurrencies) {                      
-                                    cryptocurrencies.forEach((c, i) => {
-                                        if (c.symbol === crypto.symbol) {
-                                            priceUsd = c.price_usd
-                                        }
-                                    })
-                                    holdings += Number(crypto.holdings) * Number(priceUsd)
-                                    used.push(crypto.symbol)
-                                }
-                            }
-                        })
-                    }
-                }
-            })
-        }
-
-        return `$${parseFloat(Math.round(holdings * 100) / 100).toFixed(2)}`       
+        if (Object.keys(window.localStorage).length > 2) {
+            console.log()
+            holdings = Number(window.localStorage.holdings)
+        }   
+        return ` ${parseFloat(Math.round(holdings * 100) / 100).toFixed(2)}` 
     }
 
     render() {
@@ -240,17 +258,37 @@ class dashboardContainer extends Component {
         return (
             <div className='container-dash'>
                 <NavContainer/>
+                <div className='margin-top'></div>
+
                 <div className='container container-table'>
+                    <div className='row'>
+                        <div className='col-lg-6'>
+                            <div className='container user-leftside'>
+                                <i className="fa fa-8x fa-user-circle"></i>
+                            </div>
+                        </div>
+                        <div className='col-lg-6'>
+                            <div className='container user-rightside'>
+                                <h4 className='current-user'>{`@${currentUser}`}</h4>
+                                <h2 className='total-holdings'>
+                                    <i className='fa fa-md fa-dollar-sign'></i>
+                                    {this.renderTotalHoldings()}
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
                     <div className='row'>
                         {<div className='col-md-1'></div>}
                         <div className='col-md-10'>
-                            <div className='margin-top'></div>
-                                {this.renderTrending()}
-                                <TableContainer/>
-                            </div>
+                            <hr className='hr-color'/> 
+                            {this.renderTrending('Gainers')}
+                            {this.renderTrending('Losers')}
+                            <TableContainer/>
+                        </div>
                         {<div className='col-md-1'></div>}
                     </div>
                 </div>
+
             </div>
         )
     }

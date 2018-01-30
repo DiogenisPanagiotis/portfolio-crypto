@@ -103,7 +103,9 @@ body {
 .card-body-form {
 	padding: 50px;
 }
-
+.user-leftside {
+	text-align: right;
+}
 @media (max-width: 575px) { 
 	.jumbotron {
 		background-color: #FAFAFA;
@@ -187,6 +189,40 @@ body {
     	margin-left: 10px;
     }
 
+    .hr-color {
+    	margin-left: 10px;
+    	margin-right: 10px;
+    }
+
+    .user-leftside, .user-rightside {
+    	text-align: center;
+    }
+
+    .modal-header, .modal-body, .modal-footer {
+			padding: 16px!important;
+		}
+
+		.modal-title {
+			font-size: 20px!important;
+		}
+
+		.modal-holdings {
+			font-size: 16px!important;
+		}
+
+		.icon-modal {
+			height: 100px!important;
+			border: solid 10px #fff !important;
+			border-radius: 50px!important;
+		}
+
+		.jumbo-modal-stats, #crypto-input {
+			margin-top: 10px !important;
+		}
+
+		.jumbo-modal-icon {
+			margin-top: 20px !important;
+		}
 }
 
 @media (max-width: 768px) {
@@ -417,7 +453,7 @@ a:hover {
 		height: 90px;
 }
 
-.icon-lg:hover, .topcoin:hover, .icon-modal:hover, .trending-icon:hover {
+.icon-lg:hover, .topcoin:hover, .icon-modal:hover, .trending-icon:hover, .fa-custom-size:hover {
     transform: rotate(360deg);
     -webkit-transform: rotate(360deg);
 }
@@ -963,4 +999,44 @@ a:hover {
 	color: #008489;
 	color: #3cd483;
 }
+
+.current-user {
+	color: #484848;
+	margin-top: 20px;
+}
+
+.fa-user-circle {
+	color: #ddd;
+	border: solid 10px #fff;
+	border-radius: 4rem;
+	box-shadow: 0 0 0 1px #eee;
+}
+
+.fa-dollar-sign {
+	color: #484848;
+}
+
+.arrow-down {
+	position: absolute;
+	top: 0;
+	left: 0;
+	padding-left: 12px;
+	padding-top: 8px;
+	color: #ff6060;
+}
+
+.total-holdings {
+	color: #484848;
+	margin-top: 20px;
+}
+
+.hr-color {
+	border-color: #efefef;
+	margin-top: 40px;
+}
+
+.fa-question-circle {
+	color: #aaa;
+}
+
 
