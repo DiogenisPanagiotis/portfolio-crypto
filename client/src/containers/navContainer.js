@@ -8,11 +8,11 @@ import arrow from '../icons/left-arrow.svg'
 class navContainer extends Component {
 
     logout() {
-        // let { appReducer } = this.props
         let { toggleSignedup } = this.props.actions
         toggleSignedup(true)
         localStorage.removeItem('user')
         localStorage.removeItem('rowClicked')
+        localStorage.removeItem('holdings')
         this.props.history.push('/')
     }
 

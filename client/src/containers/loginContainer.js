@@ -35,7 +35,7 @@ class loginContainer extends Component {
             for (let userModel of users) {
                 let verifyPassword = passwordHash.verify(password, userModel.password)
                 if (userModel.username === username && verifyPassword) {
-                    let userCookie = JSON.stringify({ username: userModel.username, _id: userModel._id })
+                    let userCookie = JSON.stringify({ username: userModel.username, _id: userModel._id, cryptocurrencies: userModel.cryptocurrencies })
                     localStorage.setItem('user', userCookie)
                     if (invalid === true) {
                         setInvalid()

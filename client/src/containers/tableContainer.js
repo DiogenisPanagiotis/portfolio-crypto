@@ -28,7 +28,7 @@ class tableContainer extends Component {
         let { localStorage } = window
         let currentUser = JSON.parse(localStorage.user).username
         let holdings = '0.00'
-        if (Object.keys(localStorage).length > 1) {    
+        if (Object.keys(localStorage).includes('rowClicked')) {    
             let cryptoClicked = JSON.parse(localStorage.rowClicked).symbol
             if (users) {
                 users.forEach(user => {

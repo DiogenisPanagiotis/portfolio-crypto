@@ -24,33 +24,7 @@ class dashboardContainer extends Component {
         let holdings = 0
 
         getCryptos(0, 100).then(() => {
-            getUsers().then(() => {
-                let { users } = this.props.userReducer
-                let { cryptocurrencies } = this.props.cryptoReducer
-
-                users.forEach(user => {
-                    if (user.username === currentUser) {
-                        if (user.cryptocurrencies.length > 0) {
-                            user.cryptocurrencies.forEach((crypto, i) => {
-                                if (!used.includes(crypto.symbol)) {
-                                    let priceUsd
-                                    if (cryptocurrencies) {                      
-                                        cryptocurrencies.forEach((c, i) => {
-                                            if (c.symbol === crypto.symbol) {
-                                                priceUsd = c.price_usd
-                                            }
-                                        })
-                                        holdings += Number(crypto.holdings) * Number(priceUsd)
-                                        used.push(crypto.symbol)
-                                    }
-                                }
-                            })
-                        }
-                    }
-                })
-
-                localStorage.setItem('holdings', JSON.stringify(holdings))
-            })
+            getUsers()
         })
     }
 
@@ -68,7 +42,6 @@ class dashboardContainer extends Component {
         let userCookie = JSON.stringify(cryptocurrency)
         localStorage.setItem('rowClicked', userCookie)
         handleRowClick(cryptocurrency)
-        // this.props.history.push('/form')
         $(`#modal-${i}`).modal('show')
     }
 
@@ -244,10 +217,30 @@ class dashboardContainer extends Component {
 
     renderTotalHoldings() {
         let holdings = 0
-        if (Object.keys(window.localStorage).length > 2) {
-            console.log()
-            holdings = Number(window.localStorage.holdings)
-        }   
+        let { users } = this.props.userReducer
+        let { cryptocurrencies: cryps } = this.props.cryptoReducer
+        let { localStorage } = window
+        if (users) {
+            let currentUserIndex = users.findIndex(user => user.username === JSON.parse(localStorage.user).username)
+            let currentUser = users[currentUserIndex]
+            if (currentUser) {
+               console.log(currentUser) 
+               if (currentUser.cryptocurrencies) {
+                    currentUser.cryptocurrencies.forEach((c, i) => {
+                        let priceUsd
+                        if (cryps) { 
+                            console.log('ddd', cryps)                     
+                            cryps.forEach((cr, i) => {
+                                if (c.symbol === cr.symbol) {
+                                    priceUsd = cr.price_usd
+                                }
+                            })
+                        }                       
+                        holdings = holdings + (Number(c.holdings) * Number(priceUsd))         
+                    })
+               }
+            }
+        } 
         return ` ${parseFloat(Math.round(holdings * 100) / 100).toFixed(2)}` 
     }
 
