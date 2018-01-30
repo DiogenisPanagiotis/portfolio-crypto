@@ -83,6 +83,7 @@ class dashboardContainer extends Component {
                 <div className='jumbo-card' onClick={() => this.rowClicked(c[i], modalIndex)}>
                     <div className='jumbotron jumbo-trending align-center'>
                         <img className='trending-icon holder' src="http://via.placeholder.com/25.png/aaa?text=."/>
+                        <div className='lightning'><i className="fa fa-bolt"></i></div>
                     </div>
                     <div className='jumbotron jumbo-stats'>
                         <div className='row'>
