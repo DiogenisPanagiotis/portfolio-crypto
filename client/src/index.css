@@ -179,7 +179,7 @@ body {
     	font-size: 15px;
     }
 
-    .jumbo-trending {
+    .jumbo-trending, .jumbo-holdings {
     	background-color: #fff;
     	border: solid 1px #eee;
     }
@@ -222,6 +222,13 @@ body {
 
 		.jumbo-modal-icon {
 			margin-top: 20px !important;
+		}
+
+		.pad-left-24 {
+			padding-left: 24px;
+		}
+		.pad-right-24 {
+			padding-right: 24px;
 		}
 }
 
@@ -665,7 +672,23 @@ a:hover {
 	padding: 1rem;
 }
 
-.jumbo-card:hover .icon-lg {
+.jumbo-card:hover  .icon-lg {
+    transition: 0.8s;
+    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -o-transform: rotate (360deg);
+}
+
+.jumbo-trending:hover  .trending-icon {
+    transition: 0.8s;
+    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -o-transform: rotate (360deg);
+}
+
+.jumbo-holdings:hover  .icon-lg {
     transition: 0.8s;
     transform: rotate(360deg);
     -webkit-transform: rotate(360deg);
@@ -820,7 +843,9 @@ a:hover {
 	margin-top: 20px;
 	position: relative;
 }
-
+.jumbo-holdings {
+	position: relative;	
+}
 .container-table {
 	margin-bottom: 70px;
 }
@@ -999,7 +1024,14 @@ a:hover {
 	color: #008489;
 	color: #3cd483;
 }
-
+.counter {
+	position: absolute;
+	top: 15px;
+	left: -5px;
+	padding-left: 50px;
+	/*padding-top: 50px;*/
+	color: black;	
+}
 .current-user {
 	color: #484848;
 	margin-top: 20px;
@@ -1010,6 +1042,11 @@ a:hover {
 	border: solid 10px #fff;
 	border-radius: 4rem;
 	box-shadow: 0 0 0 1px #eee;
+}
+
+.fa-layers-counter {
+	background-color: #484848;
+	padding: 25px;
 }
 
 .fa-dollar-sign {
@@ -1035,8 +1072,17 @@ a:hover {
 	margin-top: 40px;
 }
 
+.hr-holdings {
+	border-color: #efefef;
+	margin-top: 40px;
+}
+
 .fa-question-circle {
 	color: #aaa;
+}
+
+.jumbo-holdings:hover {
+	cursor: pointer;
 }
 
 

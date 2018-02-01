@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import actions from '../actions/actions'
-import { withRouter } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import NavContainer from './navContainer'
 import SecondaryNav from './secondaryNav'
 import TableContainer from './tableContainer'
@@ -70,7 +70,9 @@ class dashboardContainer extends Component {
 
                             <div className='jumbotron jumbo-trending align-center'>
                                 <img className={classNameTrending} src={svgSource}/>
-                                <div className={faClass}><i className={faIcon}></i></div>
+                                <div className={faClass}>
+                                    <i className={faIcon}></i>
+                                </div>
                             </div>
 
                             <div className='jumbotron jumbo-stats'>
@@ -257,7 +259,7 @@ class dashboardContainer extends Component {
                     <div className='row'>
                         <div className='col-lg-6'>
                             <div className='container user-leftside'>
-                                <i className="fa fa-8x fa-user-circle"></i>
+                                <Link to='/form'><i className="fa fa-8x fa-user-circle"></i></Link>
                             </div>
                         </div>
                         <div className='col-lg-6'>

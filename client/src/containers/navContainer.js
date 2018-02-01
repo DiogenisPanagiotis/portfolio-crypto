@@ -42,9 +42,7 @@ class navContainer extends Component {
         if (window.location.pathname === '/form') {
             return (
                 <Link to='/dashboard'>
-                    <button type="button" className="btn btn-primary btn-arrow">
-                        <img alt='arrow' className='arrow' src={arrow}/>
-                    </button>
+                    <i className="fas fa-2x fa-arrow-alt-circle-left"></i>
                 </Link>
             )
         }
@@ -75,7 +73,8 @@ class navContainer extends Component {
                         <li className="nav-item active">
                             <div className="j" aria-labelledby="dropdownMenuButton">
                                 <div className="dropdown-header">{user ? `@${JSON.parse(user).username}` : ''}</div>
-                                <Link to='/'> <span className="nav-link">Home</span></Link>
+                                <Link to='/form'> <span className="nav-link">Profile</span></Link>
+                                <Link to='/dashboard'> <span className="nav-link">Dashboard</span></Link>
                                 <a href={issuesUrl}><span className="nav-link">Issues</span></a>
                                 { user ? <Link to='/' onClick={() => this.logout()}> <span className="nav-link">Logout</span></Link> : null}
                             </div>
