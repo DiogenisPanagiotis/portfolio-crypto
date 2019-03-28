@@ -9,7 +9,7 @@
     "react-ui-start": "cd react-ui/ && yarn start",
     "dev-start": "nodemon --exec babel-node -- ./server/index.js",
     "start": "babel-node server",
-    "heroku-postbuild": "cd client/ && npm && npm install && npm run build"
+    "heroku-postbuild": "cd client/ && yarn && yarn install && yarn run build"
   },
   "dependencies": {
     "babel-cli": "^6.26.0",
