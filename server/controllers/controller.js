@@ -17,7 +17,7 @@ module.exports = {
     },
     updateUser: (req, res) => {
         UserModel.findById(req.params.id, (err, model) => {
-                console.log(req.body)
+            console.log(req.body)
             if (err) {
                 res.status(500).send(err)
             } else {

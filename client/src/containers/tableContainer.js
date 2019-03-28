@@ -146,7 +146,6 @@ class tableContainer extends Component {
             toggleInvalidValue(true)
             return
         } else {
-            console.log('dkfjsdk')
             updateUser({
                 _id: id,
                 name: rowClicked.name || tableReducer.cryptocurrency.name, 

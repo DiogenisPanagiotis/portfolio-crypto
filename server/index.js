@@ -11,7 +11,8 @@ const app = express()
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
 
-let db = process.env.MONGODB_URI || 'mongodb://localhost/cryptofolio'
+// let db = process.env.MONGODB_URI || 'mongodb://localhost/cryptofolio'
+let db = 'mongodb://heroku_1dq17fx7:ddpmth7650flfgm3a7s7f4tf1r@ds255787.mlab.com:55787/heroku_1dq17fx7'
 
 mongoose.connect(db, { useMongoClient: true })
 

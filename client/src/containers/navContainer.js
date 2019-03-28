@@ -42,7 +42,9 @@ class navContainer extends Component {
         if (window.location.pathname === '/form') {
             return (
                 <Link to='/dashboard'>
-                    <i className="fas fa-2x fa-arrow-alt-circle-left"></i>
+                    <div>
+                        <i className="fas fa-2x fa-arrow-alt-circle-left"></i>
+                    </div>
                 </Link>
             )
         }

@@ -29,6 +29,3 @@ render(
 )
 
 registerServiceWorker()
-
-                // <Route exact path="/dashboard" component={dashboardContainer}/>
-                // <Route exact path="/form" component={portfolioFormContainer}/>

@@ -48,9 +48,11 @@ class portfolioFormContainer extends Component {
         let { tableReducer } = this.props
         let { updateUser, getUsers, toggleInvalidValue, handleCryptocurrencyValue } = this.props.actions
         if (tableReducer.cryptocurrencyValue.length === 0 || isNaN(Number(tableReducer.cryptocurrencyValue))) {
+            console.log("a")
             toggleInvalidValue(true)
             return
         } else {
+            console.log("b")
             updateUser({
                 _id: id,
                 name: rowClicked.name || tableReducer.cryptocurrency.name, 
@@ -62,6 +64,7 @@ class portfolioFormContainer extends Component {
                 })
             })
         }
+        console.log("c")
         toggleInvalidValue(false)
     }
 
@@ -343,8 +346,7 @@ class portfolioFormContainer extends Component {
                if (currentUser.cryptocurrencies) {
                     currentUser.cryptocurrencies.forEach((c, i) => {
                         let priceUsd
-                        if (cryps) { 
-                            console.log('ddd', cryps)                     
+                        if (cryps) {                     
                             cryps.forEach((cr, i) => {
                                 if (c.symbol === cr.symbol) {
                                     priceUsd = cr.price_usd

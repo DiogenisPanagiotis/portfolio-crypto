@@ -49,7 +49,6 @@ class dashboardContainer extends Component {
         let { cryptocurrencies } = this.props.cryptoReducer
 
         if (c) {
-            console.log(c)
             let modalIndex = cryptocurrencies.findIndex(crypto => crypto.symbol === c[i].symbol)
             let sym = c[i].symbol.toLowerCase()
             let svg = `${sym}.svg`
@@ -93,7 +92,6 @@ class dashboardContainer extends Component {
             return (
                 <div className='jumbo-card' onClick={() => this.rowClicked(c[i], modalIndex)}>
                     <div className='jumbotron jumbo-trending align-center'>
-                        {/*<img className='trending-icon holder' src="http://via.placeholder.com/25.png/aaa?text=."/>*/}
                         <i className='fas fa-6x fa-question-circle trending-icon'></i>
                         <div className={faClass}><i className={faIcon}></i></div>
                     </div>
@@ -230,8 +228,7 @@ class dashboardContainer extends Component {
                if (currentUser.cryptocurrencies) {
                     currentUser.cryptocurrencies.forEach((c, i) => {
                         let priceUsd
-                        if (cryps) { 
-                            console.log('ddd', cryps)                     
+                        if (cryps) {                  
                             cryps.forEach((cr, i) => {
                                 if (c.symbol === cr.symbol) {
                                     priceUsd = cr.price_usd

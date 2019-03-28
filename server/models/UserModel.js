@@ -6,7 +6,7 @@ const modelSchema = new Schema({
     username: String,
     password: String,
     cryptocurrencies: []
-})
+}, { usePushEach: true })
 
 const UserModel = mongoose.model('UserModel', modelSchema)
 
