@@ -1077,12 +1077,34 @@ a:hover {
 	margin-top: 40px;
 }
 
-.fa-question-circle {
-	color: #aaa;
+.fa-6x {
+	font-size: 3.5em;
+}
+
+.fa-7x {
+	font-size: 5.6em;
 }
 
 .jumbo-holdings:hover {
 	cursor: pointer;
 }
 
+.fusion {
+	color: #eb3b5a;
+}
 
+.reptile {
+	color: #26de81;
+}
+
+.purp {
+	color: #a55eea;
+}
+
+.maverick {
+	color: #212529;
+}
+
+.sun {
+	color: #fed330;
+}

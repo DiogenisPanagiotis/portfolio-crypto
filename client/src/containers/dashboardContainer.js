@@ -7,6 +7,8 @@ import NavContainer from './navContainer'
 import SecondaryNav from './secondaryNav'
 import TableContainer from './tableContainer'
 import icons from '../icons/icons'
+import * as service from '../services'
+
 var $ = window.jQuery
 
 class dashboardContainer extends Component {
@@ -66,7 +68,6 @@ class dashboardContainer extends Component {
                     let classNameTrending = i === 0 ? 'trending-icon m-left-0' : 'trending-icon'
                     return (
                         <div className='jumbo-card' onClick={() => this.rowClicked(c[i], modalIndex)}>
-
                             <div className='jumbotron jumbo-trending align-center'>
                                 <img className={classNameTrending} src={svgSource}/>
                                 <div className={faClass}>
@@ -89,11 +90,16 @@ class dashboardContainer extends Component {
                 }
             }
 
+            let colorClass = service.randomColor();
+            let classNames = `fas fa-6x fa-question-circle trending-icon ${colorClass}`
+
             return (
                 <div className='jumbo-card' onClick={() => this.rowClicked(c[i], modalIndex)}>
                     <div className='jumbotron jumbo-trending align-center'>
-                        <i className='fas fa-6x fa-question-circle trending-icon'></i>
-                        <div className={faClass}><i className={faIcon}></i></div>
+                        <i className={classNames}></i>
+                        <div className={faClass}>
+                            <i className={faIcon}></i>
+                        </div>
                     </div>
                     <div className='jumbotron jumbo-stats'>
                         <div className='row'>

@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux'
 import actions from '../actions/actions'
 import { withRouter } from 'react-router-dom'
 import icons from '../icons/icons'
+import * as service from '../services'
 var $ = window.jQuery
 
 class tableContainer extends Component {
@@ -71,7 +72,11 @@ class tableContainer extends Component {
                 return <img className='icon-lg' src={svgSource}/>
             }
         }
-        return <img className='icon-lg holder' src={`http://via.placeholder.com/200x200.png/aaa?text=.`}/>
+
+        let colorClass = service.randomColor();
+        let classNames = `fas fa-7x fa-question-circle trending-icon' ${colorClass}`
+
+        return <i className={classNames}></i>
     }
 
     renderIconModal(symbol) {
@@ -88,7 +93,11 @@ class tableContainer extends Component {
                 return <img className='icon-modal' src={svgSource}/>
             }
         }
-        return <img className='icon-modal holder' src="http://via.placeholder.com/25.png/aaa?text=."/>
+
+        let colorClass = service.randomColor();
+        let classNames = `fas fa-7x fa-question-circle trending-icon' ${colorClass}`
+
+        return <i className={classNames}></i>
     }
 
     trimPrice(price) {

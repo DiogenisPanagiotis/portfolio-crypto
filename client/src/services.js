@@ -13,3 +13,9 @@ export const redirectToDashboard = (localStorage, props) => {
 export const getCryptos = (start, limit) => axios.get(`https://api.coinmarketcap.com/v1/ticker/?start=${start}&limit=${limit}`)
 
 export const updateUser = userModel => axios.put(`/api/users/${userModel._id}`, userModel)
+
+export const randomColor = function() {
+    var colorClass = ['maverick', 'fusion', 'reptile', 'purp', 'sun'];
+    var randomNum = Math.floor(Math.random() * Math.floor(5));
+    return colorClass[randomNum];
+}
