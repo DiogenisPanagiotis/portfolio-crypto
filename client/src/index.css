@@ -106,6 +106,7 @@ body {
 .user-leftside {
 	text-align: right;
 }
+
 @media (max-width: 575px) { 
 	.jumbotron {
 		background-color: #FAFAFA;
@@ -460,7 +461,7 @@ a:hover {
 		height: 90px;
 }
 
-.icon-lg:hover, .topcoin:hover, .icon-modal:hover, .trending-icon:hover, .fa-custom-size:hover {
+.icon-lg:hover, .topcoin:hover, .icon-modal:hover, .trending-icon:hover, .fa-custom-size:hover, .fa-user-circle:hover {
     transform: rotate(360deg);
     -webkit-transform: rotate(360deg);
 }
@@ -1038,10 +1039,17 @@ a:hover {
 }
 
 .fa-user-circle {
-	color: #ddd;
+	color: #212529;
 	border: solid 10px #fff;
 	border-radius: 4rem;
 	box-shadow: 0 0 0 1px #eee;
+/*    transition: 0.8s;
+    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -o-transform: rotate (360deg);*/
+    transition-duration: 0.8s;
+    transition-property: transform;
 }
 
 .fa-layers-counter {
@@ -1108,3 +1116,4 @@ a:hover {
 .sun {
 	color: #fed330;
 }
+
